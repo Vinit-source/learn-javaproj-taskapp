@@ -16,7 +16,7 @@ public class TestRegisterFeature {
 
 	/**
 	 * @param args
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
@@ -29,16 +29,15 @@ public class TestRegisterFeature {
 		// Get Input User registration details using Scanner
 		System.out.println("Enter username");
 		user.setName(sc.nextLine());
-		
+
 		System.out.println("Enter email");
 		user.setEmail(sc.nextLine());
-		
+
 		System.out.println("Enter password");
 		user.setPassword(sc.nextLine());
-		
-		
+
 		System.out.println(login.registerUser(user));
-		
+
 	}
 
 }
