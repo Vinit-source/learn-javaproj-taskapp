@@ -1,5 +1,8 @@
-com\fssa\learnJava\project\taskapp\model\User.class
+com\fssa\learnJava\project\taskapp\dao\TaskDao.class
 com\fssa\learnJava\project\taskapp\dao\ConnectionUtil.class
 com\fssa\learnJava\project\taskapp\App.class
 com\fssa\learnJava\project\taskapp\services\LoginService.class
 com\fssa\learnJava\project\taskapp\dao\UserDao.class
+com\fssa\learnJava\project\taskapp\model\User.class
+com\fssa\learnJava\project\taskapp\model\Task.class
+com\fssa\learnJava\project\taskapp\services\TaskService.class

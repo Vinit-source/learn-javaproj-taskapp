@@ -1,3 +1,5 @@
 com\fssa\learnJava\project\taskapp\driver\TestLoginFeature.class
 com\fssa\learnJava\project\taskapp\AppTest.class
+com\fssa\learnJava\project\taskapp\driver\TestListTasksFeature.class
 com\fssa\learnJava\project\taskapp\driver\TestRegisterFeature.class
+com\fssa\learnJava\project\taskapp\driver\TestAddTaskFeature.class
