@@ -20,9 +20,10 @@ import com.fssa.learnJava.project.taskapp.services.TaskService;
  */
 class TestListTasksFeature {
 
+	@Test
 	public static void main(String[] args) throws Exception {
 		TaskService TaskService = new TaskService();
 
-		TaskService.getAllTasks();
+		assertTrue(TaskService.getAllTasks());
 	}
 }

@@ -32,20 +32,16 @@ public class TaskService {
 		}
 	}
 
-	public boolean getAllTasks() throws Exception {
+	public List<Task> getAllTasks() throws Exception {
 		TaskDao taskDao = new TaskDao();
 		List<Task> tasksFromDB = taskDao.getAllTasks();
 		int length = tasksFromDB.size();
-		if (length > 0) {
 			System.out.println(" Sr.No.  | Task Name                | Status           | Actions      ");
 			for (Task task : tasksFromDB) {
 				String formattedString = String.format("%-10d|%-26s|%-18s|", task.getId(), task.getTask(),
 						task.getTaskStatus());
 				System.out.println(formattedString);
 			}
-			return true;
-		} else {
-			return false;
-		}
+			return tasksFromDB;
 	}
 }
