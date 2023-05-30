@@ -22,7 +22,7 @@ import com.fssa.learnJava.project.taskapp.model.Task;
 class TestAddTaskFeature {
 
 	@Test
-	public void testAddTaskFeature(String[] args) throws Exception {
+	public void testAddTaskFeature() throws Exception {
 		LoginService loginService = new LoginService();
 		TaskService addTaskService = new TaskService();
 
