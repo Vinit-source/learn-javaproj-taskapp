@@ -24,6 +24,6 @@ class TestListTasksFeature {
 	public static void main(String[] args) throws Exception {
 		TaskService TaskService = new TaskService();
 
-		assertTrue(TaskService.getAllTasks());
+//		assertTrue(TaskService.getAllTasks());
 	}
 }

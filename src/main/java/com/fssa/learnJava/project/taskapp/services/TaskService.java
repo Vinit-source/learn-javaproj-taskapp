@@ -36,12 +36,12 @@ public class TaskService {
 		TaskDao taskDao = new TaskDao();
 		List<Task> tasksFromDB = taskDao.getAllTasks();
 		int length = tasksFromDB.size();
-			System.out.println(" Sr.No.  | Task Name                | Status           | Actions      ");
-			for (Task task : tasksFromDB) {
-				String formattedString = String.format("%-10d|%-26s|%-18s|", task.getId(), task.getTask(),
-						task.getTaskStatus());
-				System.out.println(formattedString);
-			}
-			return tasksFromDB;
+		System.out.println(" Sr.No.  | Task Name                | Status           | Actions      ");
+		for (Task task : tasksFromDB) {
+			String formattedString = String.format("%-10d|%-26s|%-18s|", task.getId(), task.getTask(),
+					task.getTaskStatus());
+			System.out.println(formattedString);
+		}
+		return tasksFromDB;
 	}
 }
