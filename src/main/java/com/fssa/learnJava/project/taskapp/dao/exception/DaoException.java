@@ -1,5 +1,12 @@
+/**
+ * 
+ */
 package com.fssa.learnJava.project.taskapp.dao.exception;
 
+/**
+ * @author VinitGore
+ *
+ */
 public class DaoException extends Exception{
 	/**
 	 * 

@@ -3,13 +3,12 @@
  */
 package com.fssa.learnJava.project.taskapp.model;
 
-
 /**
  * @author VinitGore
  *
  */
 public class Task {
-	
+
 	private int id;
 	private String task;
 
@@ -54,21 +53,7 @@ public class Task {
 	 * @param taskStatus the taskStatus to set
 	 */
 	public void setTaskStatus(String taskStatus) throws Exception {
-		String [] validStatuses = {"PENDING", "COMPLETED"};
-		boolean isValid = false;
-
-        for (String element : validStatuses) {
-            if (element.equals(taskStatus)) {
-                isValid = true;
-                break;
-            }
-        }
-		
-		if (isValid) {			
-			this.taskStatus = taskStatus;
-		} else {
-			throw new Exception("Task Status should be among the values: Pending and Completed.");
-		}
+		this.taskStatus = taskStatus;
 	}
 
 	/**

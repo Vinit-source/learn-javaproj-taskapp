@@ -17,10 +17,12 @@ import com.fssa.learnJava.project.taskapp.model.Task;
  *
  */
 public class TaskDao {
-
+	
+	// TODO: Shift this to method where it is used. Scope problem.
 	Connection connection;
 	PreparedStatement pst;
 	Statement stmt;
+	// TODO: Shift this to method where it is used. Scope problem.
 	private List<Task> tasks;
 
 	public TaskDao() throws Exception {
@@ -38,6 +40,7 @@ public class TaskDao {
 		
 		// Add to database
 		connection = ConnectionUtil.getConnection();
+		// TODO: DB names should be snake_case.
 		String query = "INSERT INTO tasks (task, taskStatus) VALUES ( ?, ? );";
 		PreparedStatement pst = connection.prepareStatement(query);
 		pst.setString(1, task.getTask());
@@ -56,6 +59,8 @@ public class TaskDao {
 	
 	public List<Task> getAllTasks() throws Exception {
 		connection = ConnectionUtil.getConnection();
+		// TODO: Be explicit about the columns required from the DB instead of using *
+		// TODO: Do not add ; in the end of queries
 		String query = "SELECT * FROM tasks;";
 		PreparedStatement pst = connection.prepareStatement(query);
 		

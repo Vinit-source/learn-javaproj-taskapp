@@ -10,7 +10,7 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.User;
-import com.fssa.learnJava.project.taskapp.services.LoginService;
+import com.fssa.learnJava.project.taskapp.services.UserService;
 
 /**
  * @author VinitGore
@@ -24,9 +24,10 @@ public class TestRegisterFeature {
 	 * 
 	 */
 	@Test
-	public void testRegisterFeature() throws Exception {
+	public void testAlreadyRegisteredUser() throws Exception {
 		// TODO Auto-generated method stub
-		LoginService login = new LoginService();
+		try {
+		UserService login = new UserService();
 
 		// Initialized objects
 //		Scanner sc = new Scanner(System.in);
@@ -47,8 +48,11 @@ public class TestRegisterFeature {
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("1234567890");
 
-		assertFalse(login.registerUser(user));
-
+		assertEquals("Email id vinit.gore@ctr.freshworks.com is already registered", login.registerUser(user));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
 	}
 
 }

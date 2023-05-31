@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
 import com.fssa.learnJava.project.taskapp.model.User;
-import com.fssa.learnJava.project.taskapp.services.LoginService;
+import com.fssa.learnJava.project.taskapp.services.UserService;
 import com.fssa.learnJava.project.taskapp.services.TaskService;
 
 /**

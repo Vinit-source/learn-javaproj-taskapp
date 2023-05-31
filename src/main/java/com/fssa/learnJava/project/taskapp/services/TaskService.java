@@ -16,13 +16,16 @@ import com.fssa.learnJava.project.taskapp.dao.TaskDao;
 public class TaskService {
 
 	public boolean addTask(Task task) throws Exception {
+		// TODO: First null check and then empty check. .equals() for string comparison
 		if (task.getTask() == "" || task.getTask() == null) {
 			System.out.println("Task name not entered!");
 			return false;
 		}
 
 		TaskDao taskDao = new TaskDao();
-
+		
+		// Business logic comes in the service layer
+		task.setTaskStatus("PENDING");
 		if (taskDao.createTask(task)) {
 			System.out.println("Task successfully added!");
 			return true;

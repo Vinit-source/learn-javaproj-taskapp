@@ -7,7 +7,8 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.User;
-import com.fssa.learnJava.project.taskapp.services.LoginService;
+import com.fssa.learnJava.project.taskapp.services.UserService;
+import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 
 /**
  * @author BharathwajSoundarara
@@ -16,19 +17,7 @@ import com.fssa.learnJava.project.taskapp.services.LoginService;
 public class TestLoginFeature {
 	@Test
 	public void testLoginFeature() throws Exception{
-		LoginService loginService = new LoginService();
-		
-//		Scanner scanner = new Scanner(System.in);
-//		
-//		User user = new User();
-//		System.out.println("Enter user name:");
-//		String userName = scanner.nextLine();
-//		
-//		System.out.println("Enter Password: ");
-//		String userPassword = scanner.nextLine();
-//		
-//		user.setName(userName);
-//		user.setPassword(userPassword);
+		UserService loginService = new UserService();
 
 		User user = new User();
 		user.setName("VinitGore");
@@ -36,12 +25,15 @@ public class TestLoginFeature {
 		user.setPassword("1234567890");
 		
 		
-		
-		User loggedInUser = loginService.login(user);
-		
-		assertEquals(user.getName(), loggedInUser.getName());
-		
-//		scanner.close();
+		try {
+		String result = loginService.login(user);
+		assertEquals(result, "SUCCESSFUL");
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail("Exception while trying to login.");
+			
+		}
+	
 	}
 
 }

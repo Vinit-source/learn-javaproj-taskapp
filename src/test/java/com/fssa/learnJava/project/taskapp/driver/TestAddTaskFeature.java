@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import com.fssa.learnJava.project.taskapp.dao.UserDao;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.TaskService;
-import com.fssa.learnJava.project.taskapp.services.LoginService;
+import com.fssa.learnJava.project.taskapp.services.UserService;
 import com.fssa.learnJava.project.taskapp.model.Task;
 
 /**
@@ -23,7 +23,7 @@ class TestAddTaskFeature {
 
 	@Test
 	public void testAddTaskFeature() throws Exception {
-		LoginService loginService = new LoginService();
+		UserService loginService = new UserService();
 		TaskService addTaskService = new TaskService();
 
 		Scanner scanner = new Scanner(System.in);
@@ -35,11 +35,11 @@ class TestAddTaskFeature {
 		// System.out.println("Enter Password: ");
 		// String userPassword = scanner.nextLine();
 
-		user.setName("Vinit");
-		user.setPassword("123456789");
+		user.setEmail("vinit.gore@ctr.freshworks.com");
+		user.setPassword("1234567890");
 
 		// To be used when tasks are filtered w.r.t. user.
-		User loggedInUser = loginService.login(user);
+		String loggedInUser = loginService.login(user);
 
 		Task task = new Task();
 		System.out.println("Task Name: ");

@@ -1,15 +1,12 @@
 package com.fssa.learnJava.project.taskapp.validation;
 
 import java.util.regex.Pattern;
-
-import com.fssa.learnJava.project.taskapp.InvalidUserException;
+import com.fssa.learnJava.project.taskapp.validation.InvalidUserException;
 import com.fssa.learnJava.project.taskapp.model.User;
 
 public class UserValidator {
 
 	private int minLength;
-
-	private final String emailValidationRegEx = "^(.+)@(\\S+)$";
 
 	public UserValidator(int minLength) throws ValidatorInitializationException {
 		if (minLength < 0) {
@@ -18,8 +15,28 @@ public class UserValidator {
 			this.minLength = minLength;
 		}
 	}
+	
+	// Use to validate login 
+	public boolean validateLoggingInUser(User user) throws InvalidUserException {
+		if (user == null) {
+			throw new InvalidUserException("Empty User");
+		}
+		if (user.getPassword() == null) {
+			throw new InvalidUserException("Password is null");
+		} else if (user.getPassword().isEmpty()) {
+			throw new InvalidUserException("Password is empty");
+		} else if (user.getPassword().length() < this.minLength) {
+			throw new InvalidUserException("Password is less expected length of " + this.minLength);
+		} else if (!this.validateEmail(user.getEmail())) {
+			throw new InvalidUserException("Please enter a valid email");
+		} else {
+			return true;
+		}
 
-	public boolean validate(User user) throws InvalidUserException {
+	}
+
+	// Use to validate register
+	public boolean validateRegisteringUser(User user) throws InvalidUserException {
 		if (user == null) {
 			throw new InvalidUserException("Empty User");
 		}
@@ -42,6 +59,7 @@ public class UserValidator {
 	}
 
 	public boolean validateEmail(String emailAddress) {
+		final String emailValidationRegEx = "^(.+)@(\\S+)$";
 		if (emailAddress == null) {
 			return false;
 		} else if (emailAddress.isEmpty()) {
