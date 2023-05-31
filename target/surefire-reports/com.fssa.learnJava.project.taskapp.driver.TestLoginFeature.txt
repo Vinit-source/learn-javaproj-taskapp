@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.driver.TestLoginFeature
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.038 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.driver.TestLoginFeature
+testLoginFeature  Time elapsed: 0.037 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+	String cannot be resolved to a type
+
+	at com.fssa.learnJava.project.taskapp.driver.TestLoginFeature.testLoginFeature(TestLoginFeature.java:33)
+
