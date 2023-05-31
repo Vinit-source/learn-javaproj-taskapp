@@ -8,19 +8,15 @@ import java.sql.SQLException;
 
 public class ConnectionUtil {
 	 
-    public static Connection getConnection() throws Exception {
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
  
         Connection con = null;
         String url = "jdbc:mysql://localhost/todos";
         String userName = "root";
         String passWord = "123456";
-        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, userName, passWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception(e);
-        }
+       
         return con;
     }
      
