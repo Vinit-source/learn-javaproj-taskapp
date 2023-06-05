@@ -22,7 +22,7 @@ import com.fssa.learnJava.project.taskapp.model.Task;
 class TestAddTaskFeature {
 
 	@Test
-	public void testAddTaskFeature() throws Exception {
+	public void testAddTaskSuccess() throws Exception {
 		UserService loginService = new UserService();
 		TaskService addTaskService = new TaskService();
 
@@ -42,9 +42,10 @@ class TestAddTaskFeature {
 		String loggedInUser = loginService.login(user);
 
 		Task task = new Task();
-		System.out.println("Task Name: ");
-		String taskName = scanner.nextLine();
-		task.setTask(taskName);
+//		System.out.println("Task Name: ");
+//		String taskName = scanner.nextLine();
+//		task.setTask(taskName);
+		task.setTask("Test task.");
 
 		assertTrue(addTaskService.addTask(task));
 

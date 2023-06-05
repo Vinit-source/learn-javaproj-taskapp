@@ -1,26 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.558 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
-testAddTaskFeature  Time elapsed: 1.558 s  <<< ERROR!
-java.lang.Error: 
-Unresolved compilation problems: 
-	Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-	String cannot be resolved to a type
-
-	at com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature.testAddTaskFeature(TestAddTaskFeature.java:31)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.021 s - in com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature

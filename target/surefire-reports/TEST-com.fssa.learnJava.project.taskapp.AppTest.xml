@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.fssa.learnJava.project.taskapp.AppTest" time="0.041" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.fssa.learnJava.project.taskapp.AppTest" time="0.071" tests="1" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="20"/>
+    <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.class.path" value="C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java\target\test-classes;C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java\target\classes;C:\Users\VinitGore\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\VinitGore\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\VinitGore\.m2\repository\de\mkammerer\argon2-jvm\2.7\argon2-jvm-2.7.jar;C:\Users\VinitGore\.m2\repository\net\java\dev\jna\jna\5.5.0\jna-5.5.0.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.1\junit-jupiter-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\VinitGore\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\VinitGore\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;"/>
@@ -11,11 +11,11 @@
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Asia/Calcutta"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="20"/>
+    <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
-    <property name="sun.java.command" value="C:\Users\VINITG~1\AppData\Local\Temp\surefire516694433233251601\surefirebooter11598897856733454582.jar C:\Users\VinitGore\AppData\Local\Temp\surefire516694433233251601 2023-05-30T16-43-21_308-jvmRun1 surefire14411366779809168808tmp surefire_013683392043843518616tmp"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
+    <property name="sun.java.command" value="C:\Users\VINITG~1\AppData\Local\Temp\surefire18132628055897150157\surefirebooter1784853581775259584.jar C:\Users\VinitGore\AppData\Local\Temp\surefire18132628055897150157 2023-06-05T18-44-28_006-jvmRun1 surefire12614048185493930246tmp surefire_02523297797592255571tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java\target\test-classes;C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java\target\classes;C:\Users\VinitGore\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\VinitGore\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\VinitGore\.m2\repository\de\mkammerer\argon2-jvm\2.7\argon2-jvm-2.7.jar;C:\Users\VinitGore\.m2\repository\net\java\dev\jna\jna\5.5.0\jna-5.5.0.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.1\junit-jupiter-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\VinitGore\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\VinitGore\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\VinitGore\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -23,50 +23,39 @@
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2023-04-18"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java"/>
     <property name="style.color" value="always"/>
+    <property name="basedir" value="C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\VINITG~1\AppData\Local\Temp\surefire516694433233251601\surefirebooter11598897856733454582.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINITG~1\AppData\Local\Temp\surefire18132628055897150157\surefirebooter1784853581775259584.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="20.0.1+9-29"/>
+    <property name="java.runtime.version" value="17.0.7+8-LTS-224"/>
     <property name="user.name" value="VinitGore"/>
-    <property name="stdout.encoding" value="Cp1252"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="file.encoding" value="UTF-8"/>
+    <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="localRepository" value="C:\Users\VinitGore\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\VINITG~1\AppData\Local\Temp\"/>
-    <property name="java.version" value="20.0.1"/>
+    <property name="java.version" value="17.0.7"/>
     <property name="user.dir" value="C:\Users\VinitGore\Documents\eclipse-workspace\fssa-learn-java"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-20\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk-17/bin/server;C:/Program Files/Java/jdk-17/bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.2\bin;C:\Users\VinitGore\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\VinitGore\AppData\Local\Programs\Python\Python311\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\VinitGore\AppData\Local\Microsoft\WindowsApps;C:\Users\VinitGore\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VinitGore\AppData\Roaming\npm;C:\Program Files\MySQL\MySQL Server 8.0\bin;;C:\Users\VinitGore\eclipse\jee-2023-032\eclipse;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk-17/bin/server;C:/Program Files/Java/jdk-17/bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.2\bin;C:\Users\VinitGore\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\VinitGore\AppData\Local\Programs\Python\Python311\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\VinitGore\AppData\Local\Microsoft\WindowsApps;C:\Users\VinitGore\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VinitGore\AppData\Roaming\npm;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\VinitGore\AppData\Local\GitHubDesktop\bin;C:\Users\VinitGore\eclipse\jee-2023-032\eclipse;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="20.0.1+9-29"/>
+    <property name="java.vm.version" value="17.0.7+8-LTS-224"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="64.0"/>
+    <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.fssa.learnJava.project.taskapp.AppTest" time="0.022">
-    <error message="Unresolved compilation problems: &#10;	The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files&#10;	The type java.util.function.BooleanSupplier cannot be resolved. It is indirectly referenced from required type org.junit.jupiter.api.Assertions&#10;	Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor&#10;" type="java.lang.Error"><![CDATA[java.lang.Error: 
-Unresolved compilation problems: 
-	The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files
-	The type java.util.function.BooleanSupplier cannot be resolved. It is indirectly referenced from required type org.junit.jupiter.api.Assertions
-	Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor
-
-	at com.fssa.learnJava.project.taskapp.AppTest.<init>(AppTest.java:1)
-]]></error>
-  </testcase>
+  <testcase name="shouldAnswerWithTrue" classname="com.fssa.learnJava.project.taskapp.AppTest" time="0.042"/>
 </testsuite>
