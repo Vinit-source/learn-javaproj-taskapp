@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.021 s - in com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
