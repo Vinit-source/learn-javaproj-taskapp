@@ -52,7 +52,7 @@ public class Task {
 	/**
 	 * @param taskStatus the taskStatus to set
 	 */
-	public void setTaskStatus(String taskStatus) throws Exception {
+	public void setTaskStatus(String taskStatus) {
 		this.taskStatus = taskStatus;
 	}
 

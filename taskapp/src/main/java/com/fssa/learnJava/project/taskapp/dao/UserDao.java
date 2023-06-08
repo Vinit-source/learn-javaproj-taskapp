@@ -26,7 +26,6 @@ public class UserDao {
 			connection = ConnectionUtil.getConnection();
 			stmt = connection.createStatement();
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DaoException(e);
 		}
 
@@ -36,11 +35,15 @@ public class UserDao {
 
 		String query = "INSERT INTO users (user_name, email_id, password) VALUES ( ?, ?, ? );";
 
-		try (PreparedStatement pst = connection.prepareStatement(query)) {
+		try (	
+//				FIXME: Why this does not work?
+//				Connection connection = ConnectionUtil.getConnection();
+//				Statement stmt = connection.createStatement();
+				PreparedStatement pst = connection.prepareStatement(query)) {
 
 			pst.setString(1, user.getName());
 			pst.setString(2, user.getEmail());
-			pst.setString(4, user.getPassword());
+			pst.setString(3, user.getPassword());
 			int rows2 = pst.executeUpdate();
 			if (rows2 > 0)
 				return true;
@@ -74,7 +77,6 @@ public class UserDao {
 					userFromDB.setName(rs.getString("user_name"));
 					userFromDB.setPassword(rs.getString("password"));
 					userFromDB.setEmail((rs.getString("email_id")));
-
 				}
 			}
 		} catch (SQLException sqe) {
@@ -91,13 +93,10 @@ public class UserDao {
 
 		try (PreparedStatement pst = connection.prepareStatement(selectQuery)) {
 
-		
-
-
 			pst.setString(1, email);
 			
 			// Step 04: Execute SELECT Query
-			try (ResultSet rs = pst.executeQuery()) {
+			try (ResultSet rs = pst.executeQuery(); ) {
 
 				// Step 06: Iterate the result
 				if (rs.next()) {
