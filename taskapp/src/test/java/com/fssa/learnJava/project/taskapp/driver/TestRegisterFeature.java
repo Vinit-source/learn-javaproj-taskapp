@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.UserService;
+import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 
 /**
  * @author VinitGore
@@ -18,37 +19,135 @@ import com.fssa.learnJava.project.taskapp.services.UserService;
  */
 public class TestRegisterFeature {
 
-	/**
-	 * @param args
-	 * @throws Exception
-	 * 
-	 */
+	
 	@Test
-	public void testAlreadyRegisteredUser() throws Exception {
-		// TODO Auto-generated method stub
+	public void testNewRegisteringUser() {
 		try {
 		UserService login = new UserService();
 
-		// Initialized objects
-//		Scanner sc = new Scanner(System.in);
-//		User user = new User();
-//
-//		// Get Input User registration details using Scanner
-//		System.out.println("Enter username");
-//		user.setName(sc.nextLine());
-//
-//		System.out.println("Enter email");
-//		user.setEmail(sc.nextLine());
-//
-//		System.out.println("Enter password");
-//		user.setPassword(sc.nextLine());
+		User user = new User();
+		user.setName("Vinit");
+		user.setEmail("vinit.gore" + Math.random() + "@ctr.freshworks.com");
+		user.setPassword("1234567890");
+
+		assertEquals("Registration Successful", login.registerUser(user));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			assertEquals("Invalid User", e.getMessage());
+		}
 		
+		catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testAlreadyRegisteredUser() {
+		try {
+		UserService login = new UserService();
+
 		User user = new User();
 		user.setName("Vinit");
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("1234567890");
 
 		assertEquals("Email id vinit.gore@ctr.freshworks.com is already registered", login.registerUser(user));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testEmptyName()  {
+		
+		try {
+		UserService login = new UserService();
+
+		User user = new User();
+		user.setName("");
+		user.setEmail("vinit.gore@ctr.freshworks.com");
+		user.setPassword("1234567890");
+		login.registerUser(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid User", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+
+	@Test
+	public void testEmptyEmailId()  {
+		
+		try {
+		UserService login = new UserService();
+
+		User user = new User();
+		user.setName("Vinit");
+		user.setEmail("");
+		user.setPassword("1234567890");
+		login.registerUser(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid User", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testInvalidEmailId()  {
+		
+		try {
+		UserService login = new UserService();
+
+		User user = new User();
+		user.setName("Vinit");
+		user.setEmail("vinit.gorectr.freshworks.com");
+		user.setPassword("1234567890");
+		login.registerUser(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid User", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testValidateEmptyPassword()  {
+		
+		try {
+		UserService login = new UserService();
+
+		User user = new User();
+		user.setName("Vinit");
+		user.setEmail("vinit.gore@ctr.freshworks.com");
+		user.setPassword("");
+		login.registerUser(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid User", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testValidatePasswordLessThan8Chars()  {
+		
+		try {
+		UserService login = new UserService();
+
+		User user = new User();
+		user.setName("Vinit");
+		user.setEmail("vinit.gore@ctr.freshworks.com");
+		user.setPassword("1234567");
+		login.registerUser(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid User", e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception while trying to register.");

@@ -63,7 +63,7 @@ public class UserService {
 		User userFromDb;
 		try {
 			if (!userValidator.validateRegisteringUser(user)) {
-				throw new ServiceException("invalid User");
+				throw new ServiceException("Invalid User");
 			}
 		} catch (InvalidUserException e1) {
 			throw new ServiceException("Invalid User", e1);
@@ -72,7 +72,6 @@ public class UserService {
 		try {
 			userFromDb = userdao.getUserByEmail(user.getEmail());
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
 			throw new ServiceException(e);
 		}
 
@@ -85,10 +84,9 @@ public class UserService {
 					return "Registration Successful";
 				else
 					return "Registration Failed";
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (DaoException e) {
+				throw new ServiceException(e);
 			}
 		}
-		return "Registration Failed";
 	}
 }

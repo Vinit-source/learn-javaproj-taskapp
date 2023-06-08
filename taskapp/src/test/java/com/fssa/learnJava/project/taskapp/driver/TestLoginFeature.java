@@ -11,7 +11,7 @@ import com.fssa.learnJava.project.taskapp.services.UserService;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 
 /**
- * @author BharathwajSoundarara
+ * @author VinitGore
  *
  */
 public class TestLoginFeature {
@@ -20,7 +20,6 @@ public class TestLoginFeature {
 		UserService loginService = new UserService();
 
 		User user = new User();
-		user.setName("VinitGore");
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("1234567890");
 		
@@ -37,11 +36,46 @@ public class TestLoginFeature {
 	}
 	
 	@Test
+	public void testEmptyEmailId()  {
+		
+		try {
+		UserService loginService = new UserService();
+
+		User user = new User();
+		user.setEmail("");
+		user.setPassword("1234567890");
+		loginService.login(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid input credentials. Please meet the required input formats.", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
+	public void testEmptyPassword()  {
+		
+		try {
+		UserService loginService = new UserService();
+
+		User user = new User();
+		user.setEmail("vinit.gore@ctr.freshworks.com");
+		user.setPassword("");
+		loginService.login(user);
+		} catch (ServiceException e) {
+			assertEquals("Invalid input credentials. Please meet the required input formats.", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while trying to register.");
+		}
+	}
+	
+	@Test
 	public void testLoginEmailNotFound() throws Exception{
 		UserService loginService = new UserService();
 
 		User user = new User();
-		user.setName("Anonymous");
 		user.setEmail("anonymous@example.com");
 		user.setPassword("1234567890");
 		
@@ -62,7 +96,6 @@ public class TestLoginFeature {
 		UserService loginService = new UserService();
 
 		User user = new User();
-		user.setName("VinitGore");
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("0000000000");
 		
