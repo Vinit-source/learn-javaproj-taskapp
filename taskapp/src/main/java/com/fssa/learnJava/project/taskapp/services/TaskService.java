@@ -4,10 +4,12 @@
 package com.fssa.learnJava.project.taskapp.services;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
+import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 
 import java.util.List;
 
 import com.fssa.learnJava.project.taskapp.dao.TaskDao;
+import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
 
 /**
  * @author VinitGore
@@ -15,8 +17,7 @@ import com.fssa.learnJava.project.taskapp.dao.TaskDao;
  */
 public class TaskService {
 
-	public boolean addTask(Task task) throws Exception {
-		// TODO: First null check and then empty check. .equals() for string comparison
+	public boolean addTask(Task task) throws ServiceException {
 		if (task.getTask() == null || "".equals(task.getTask())) {
 			System.out.println("Task name not entered!");
 			return false;
@@ -26,6 +27,8 @@ public class TaskService {
 		
 		// Business logic comes in the service layer
 		task.setTaskStatus("PENDING");
+		
+		try {
 		if (taskDao.createTask(task)) {
 			System.out.println("Task successfully added!");
 			return true;
@@ -33,12 +36,17 @@ public class TaskService {
 			System.out.println("Task not added");
 			return false;
 		}
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 	}
 
-	public List<Task> getAllTasks() throws Exception {
+	public List<Task> getAllTasks() throws ServiceException {
 		TaskDao taskDao = new TaskDao();
+		
+		try {
 		List<Task> tasksFromDB = taskDao.getAllTasks();
-		int length = tasksFromDB.size();
+		
 		System.out.println(" Sr.No.  | Task Name                | Status           | Actions      ");
 		for (Task task : tasksFromDB) {
 			String formattedString = String.format("%-10d|%-26s|%-18s|", task.getId(), task.getTask(),
@@ -46,5 +54,8 @@ public class TaskService {
 			System.out.println(formattedString);
 		}
 		return tasksFromDB;
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 	}
 }
