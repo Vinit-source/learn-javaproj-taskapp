@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,9 +21,9 @@ import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
 public class TaskDao {
 
 	private List<Task> tasks;
-	
+
 	public TaskDao() {
-		tasks = new ArrayList<Task>();
+		this.tasks = new ArrayList<Task>();
 	}
 
 	/**
@@ -32,7 +31,7 @@ public class TaskDao {
 	 */
 	public boolean createTask(Task task) throws DaoException {
 		// Add to List
-		tasks.add(task);
+		this.tasks.add(task);
 
 		String query = "INSERT INTO tasks (task, task_status) VALUES (?, ?);";
 
@@ -49,20 +48,20 @@ public class TaskDao {
 				return false;
 		} catch (SQLException e) {
 			throw new DaoException(e.getMessage());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 		}
 	}
 
-	public List<Task> getAllTasks() throws Exception {
+	public List<Task> getAllTasks() throws DaoException {
 		String query = "SELECT id, task, task_status FROM tasks";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query);) {
 
 			ResultSet rs = pst.executeQuery();
-
+			
+			this.tasks.clear();
 			while (rs.next()) {
 
 				Task task = new Task();
@@ -76,6 +75,10 @@ public class TaskDao {
 				task.setTaskStatus(taskStatus);
 				this.tasks.add(task);
 			}
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} catch (ClassNotFoundException e) {
+			throw new DaoException(e);
 		}
 
 		return this.tasks;
