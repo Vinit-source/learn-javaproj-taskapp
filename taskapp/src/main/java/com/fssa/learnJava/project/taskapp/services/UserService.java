@@ -27,7 +27,7 @@ public class UserService {
 		try {
 			this.userdao = new UserDao();
 			this.userValidator = new UserValidator(this.minPasswordLen);
-		} catch (DaoException | ValidatorInitializationException e) {
+		} catch ( ValidatorInitializationException e) {
 			throw new ServiceException(e);
 		}
 

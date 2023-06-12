@@ -17,7 +17,7 @@ public class TaskService {
 
 	public boolean addTask(Task task) throws Exception {
 		// TODO: First null check and then empty check. .equals() for string comparison
-		if (task.getTask() == "" || task.getTask() == null) {
+		if (task.getTask() == null || "".equals(task.getTask())) {
 			System.out.println("Task name not entered!");
 			return false;
 		}
