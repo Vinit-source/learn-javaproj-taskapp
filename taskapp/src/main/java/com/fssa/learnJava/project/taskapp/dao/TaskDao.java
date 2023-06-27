@@ -20,25 +20,16 @@ import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
  */
 public class TaskDao {
 
-	private List<Task> tasks;
-
-	public TaskDao() {
-		this.tasks = new ArrayList<Task>();
-	}
-
 	/**
 	 * 
 	 */
 	public boolean createTask(Task task) throws DaoException {
-		// Add to List
-		this.tasks.add(task);
-
 		String query = "INSERT INTO tasks (task, task_status) VALUES (?, ?);";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
 			pst.setString(1, task.getTask());
-			pst.setString(2, "PENDING");
+			pst.setString(2, task.getTaskStatus());
 
 			int rows = pst.executeUpdate();
 
@@ -57,11 +48,10 @@ public class TaskDao {
 		String query = "SELECT id, task, task_status FROM tasks";
 
 		try (Connection connection = ConnectionUtil.getConnection();
-				PreparedStatement pst = connection.prepareStatement(query);) {
+				PreparedStatement pst = connection.prepareStatement(query);
+				ResultSet rs = pst.executeQuery();) {
 
-			ResultSet rs = pst.executeQuery();
-			
-			this.tasks.clear();
+			List<Task> tasks = new ArrayList<Task>();
 			while (rs.next()) {
 
 				Task task = new Task();
@@ -73,14 +63,14 @@ public class TaskDao {
 				task.setId(id);
 				task.setTask(taskName);
 				task.setTaskStatus(taskStatus);
-				this.tasks.add(task);
+				tasks.add(task);
 			}
+			return tasks;
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		} catch (ClassNotFoundException e) {
 			throw new DaoException(e);
 		}
 
-		return this.tasks;
 	}
 }

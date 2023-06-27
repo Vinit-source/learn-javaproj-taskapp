@@ -20,18 +20,19 @@ import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
 public class TaskService {
 
 	TaskValidator taskValidator;
+	TaskDao taskDao;
 
 	public TaskService() {
 		this.taskValidator = new TaskValidator();
+		this.taskDao = new TaskDao();
 	}
 
 	public boolean addTask(Task task) throws ServiceException {
 		try {
-			if (this.taskValidator.validateNewTask(task)) {
-				TaskDao taskDao = new TaskDao(); // TODO: Shift the initializations to class level.
+			// Business logic comes in the service layer
+			task.setTaskStatus("PENDING");
 
-				// Business logic comes in the service layer
-				task.setTaskStatus("PENDING");
+			if (this.taskValidator.validateNewTask(task)) {
 
 				if (taskDao.createTask(task)) {
 					System.out.println("Task successfully added!");
@@ -45,12 +46,13 @@ public class TaskService {
 			throw new ServiceException("Invalid task input entered.", e);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		} catch (NullPointerException e) {
+			throw new ServiceException("Task data not initialized.", e);
 		}
 		return false;
 	}
 
 	public List<Task> getAllTasks() throws ServiceException {
-		TaskDao taskDao = new TaskDao();
 
 		try {
 			List<Task> tasksFromDB = taskDao.getAllTasks();

@@ -6,10 +6,10 @@ public class TaskValidator {
 
 	public boolean validateNewTask(Task task) throws InvalidTaskException {
 		if (task == null) {
-			throw new InvalidTaskException("Problem in creating new task");
+			throw new InvalidTaskException("Task is null");
 		} else if (task.getTask().isEmpty()) {
 			throw new InvalidTaskException("Task is empty");
-		} else if ("PENDING".equals(task.getTaskStatus()) && "COMPLETED".equals(task.getTaskStatus())) {
+		} else if (!("PENDING".equals(task.getTaskStatus()) || "COMPLETED".equals(task.getTaskStatus()))) {
 			throw new InvalidTaskException("TaskStatus should be either 'PENDING' or 'COMPLETED'");
 		} else {
 			return true;
