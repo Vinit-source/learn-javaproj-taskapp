@@ -78,7 +78,7 @@ class TestTaskService {
 		try {
 			addTaskService.addTask(task);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			assertEquals(e.getMessage(), "Invalid task input entered.");
 		}
 
@@ -107,11 +107,13 @@ class TestTaskService {
 		try {
 			addTaskService.addTask(task);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			assertEquals(e.getMessage(), "Task data not initialized.");
 		}
 
 	}
+	
+	//======================================//
 
 	@Test
 	public void testListTasksSuccess() {
@@ -125,7 +127,11 @@ class TestTaskService {
 			fail();
 		}
 	}
+	
+	
 
+	//=======================//
+	
 	@Test
 	public void testEditTasksDescriptionUpdateSuccess() {
 		TaskService taskService = new TaskService();
@@ -143,6 +149,9 @@ class TestTaskService {
 		}
 	}
 	
+	
+	
+	//-------------------------//
 
 	@Test
 	public void testEditTasksStatusUpdateSuccess() {
@@ -158,6 +167,27 @@ class TestTaskService {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
+		}
+	}
+	
+	@Test
+	public void testEditTasksStatusUpdateWithoutCompletedTime() {
+		TaskService taskService = new TaskService();
+		try {
+			Task taskToAdd = new Task();
+			taskToAdd.setTask("Running 'testEditTasksStatusUpdateWithoutCompletedTime'");
+			taskService.addTask(taskToAdd);
+			
+			List<Task> tasksFromDB = taskService.getAllTasks();
+			
+			Task taskFromDB = new Task();
+			taskFromDB = tasksFromDB.get(tasksFromDB.size()-1);
+			taskFromDB.setTaskStatus("COMPLETED");
+			taskService.editTask(taskFromDB);
+			fail();
+		} catch (ServiceException e) {
+//			e.printStackTrace();
+			assertEquals("Task Completed time cannot be null for COMPLETED tasks.", e.getMessage());
 		}
 	}
 }

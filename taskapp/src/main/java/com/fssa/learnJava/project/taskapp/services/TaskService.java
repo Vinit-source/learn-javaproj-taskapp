@@ -75,9 +75,9 @@ public class TaskService {
 				operationStatus = taskDao.updateTask(task);
 			}
 		} catch (DaoException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage(), e);
 		} catch (InvalidTaskException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 		System.out.println("The task with id " + task.getId() + " was edited successfully!");
 		return operationStatus;
