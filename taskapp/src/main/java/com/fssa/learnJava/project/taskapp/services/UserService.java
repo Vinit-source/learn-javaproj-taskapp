@@ -5,8 +5,8 @@ package com.fssa.learnJava.project.taskapp.services;
 
 import java.sql.SQLException;
 
-import com.fssa.learnJava.project.taskapp.dao.UserDao;
-import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
+import com.fssa.learnJava.project.taskapp.dao.UserDAO;
+import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 import com.fssa.learnJava.project.taskapp.validation.InvalidUserException;
@@ -19,13 +19,13 @@ import com.fssa.learnJava.project.taskapp.validation.ValidatorInitializationExce
  */
 public class UserService {
 
-	private UserDao userdao;
+	private UserDAO userdao;
 	private UserValidator userValidator;
 	private final int minPasswordLen = 8;
 
 	public UserService() throws ServiceException {
 		try {
-			this.userdao = new UserDao();
+			this.userdao = new UserDAO();
 			this.userValidator = new UserValidator(this.minPasswordLen);
 		} catch ( ValidatorInitializationException e) {
 			throw new ServiceException(e);
@@ -54,7 +54,7 @@ public class UserService {
 			} else {
 				return "Invalid Login Credentials";
 			}
-		} catch (DaoException ex) {
+		} catch (DAOException ex) {
 			throw new ServiceException(ex);
 		}
 
@@ -72,7 +72,7 @@ public class UserService {
 
 		try {
 			userFromDb = userdao.getUserByEmail(user.getEmail());
-		} catch (DaoException e) {
+		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 
@@ -85,7 +85,7 @@ public class UserService {
 					return "Registration Successful";
 				else
 					return "Registration Failed";
-			} catch (DaoException e) {
+			} catch (DAOException e) {
 				throw new ServiceException(e);
 			}
 		}

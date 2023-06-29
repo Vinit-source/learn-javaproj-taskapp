@@ -12,24 +12,19 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
-import com.fssa.learnJava.project.taskapp.dao.exception.DaoException;
+import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
 import com.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverter;
 
 /**
  * @author VinitGore
  *
  */
-public class TaskDao {
+public class TaskDAO {
 	
-	private LocalDateTimeAttributeConverter dtConverter;
-	public TaskDao () {
-		this.dtConverter = new LocalDateTimeAttributeConverter();
-	}
-
 	/**
 	 * 
 	 */
-	public boolean createTask(Task task) throws DaoException {
+	public boolean createTask(Task task) throws DAOException {
 		String query = "INSERT INTO tasks (task, task_status) VALUES (?, ?);";
 
 		try (Connection connection = ConnectionUtil.getConnection();
@@ -44,14 +39,14 @@ public class TaskDao {
 			else
 				return false;
 		} catch (SQLException e) {
-			throw new DaoException(e.getMessage());
+			throw new DAOException(e.getMessage());
 		} catch (Exception e) {
-			throw new DaoException(e);
+			throw new DAOException(e);
 		}
 	}
 
-	public List<Task> getAllTasks() throws DaoException {
-		String query = "SELECT id, task, task_status, completed_at FROM tasks";
+	public List<Task> getAllTasks() throws DAOException {
+		String query = "SELECT id, task, task_status, completed_at, is_deleted FROM tasks WHERE is_deleted = 0";
 
 		List<Task> tasks;
 
@@ -67,8 +62,8 @@ public class TaskDao {
 				int id = rs.getInt("id");
 				String taskName = rs.getString("task");
 				String taskStatus = rs.getString("task_status");
-				LocalDateTime completedAt = dtConverter
-						.convertToEntityAttribute(rs.getTimestamp("completed_at"));
+				LocalDateTime completedAt = LocalDateTimeAttributeConverter
+						.convertToLocalDateTime(rs.getTimestamp("completed_at"));
 
 				task.setId(id);
 				task.setTask(taskName);
@@ -77,35 +72,57 @@ public class TaskDao {
 				tasks.add(task);
 			}
 		} catch (SQLException e) {
-			throw new DaoException(e);
+			throw new DAOException(e);
 		} catch (ClassNotFoundException e) {
-			throw new DaoException(e);
+			throw new DAOException(e);
 		}
 		return tasks;
 
 	}
 
-	public boolean updateTask(Task task) throws DaoException {
+	public boolean editTask(Task task) throws DAOException {
 
-		boolean status = false;
+		boolean methodStatus = false;
 		String query = "UPDATE tasks SET task = ?, task_status = ?, completed_at = ? WHERE id = ?";
-		LocalDateTimeAttributeConverter dtConverter = new LocalDateTimeAttributeConverter();
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
 			pst.setString(1, task.getTask());
 			pst.setString(2, task.getTaskStatus());
-			pst.setTimestamp(3, dtConverter.convertToDatabaseColumn(task.getCompletedAt()));
+			pst.setTimestamp(3, LocalDateTimeAttributeConverter.convertToSQLTimestamp(task.getCompletedAt()));
 			pst.setInt(4, task.getId());
 
 			int rows = pst.executeUpdate();
 
-			status = rows > 0;
+			methodStatus = rows > 0;
 		} catch (SQLException e) {
-			throw new DaoException(e);
+			throw new DAOException(e);
 		} catch (ClassNotFoundException e) {
-			throw new DaoException(e);
+			throw new DAOException(e);
 		}
-		return status;
+		return methodStatus;
+	}
+
+	/**
+	 * @param task
+	 * @throws DAOException 
+	 */
+	public boolean removeTask(Task task) throws DAOException {
+		boolean methodStatus = false;
+		String query = "UPDATE tasks SET is_deleted = ? WHERE id = ?";
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pst = connection.prepareStatement(query)) {
+			pst.setBoolean(1, true);
+			pst.setInt(2, task.getId());
+
+			int rows = pst.executeUpdate();
+
+			methodStatus = rows > 0;
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} catch (ClassNotFoundException e) {
+			throw new DAOException(e);
+		}		
+		return methodStatus;
 	}
 
 }

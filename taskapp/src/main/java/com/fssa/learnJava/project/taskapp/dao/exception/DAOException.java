@@ -7,19 +7,19 @@ package com.fssa.learnJava.project.taskapp.dao.exception;
  * @author VinitGore
  *
  */
-public class DaoException extends Exception{
+public class DAOException extends Exception{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 424307628927676856L;
 
-	public DaoException(String msg) {
+	public DAOException(String msg) {
 		super (msg);
 	}
-	public DaoException(Throwable ex) {
+	public DAOException(Throwable ex) {
 		super (ex);
 	}
-	public DaoException(String msg, Throwable ex) {
+	public DAOException(String msg, Throwable ex) {
 		super (msg,ex);
 	}
 }

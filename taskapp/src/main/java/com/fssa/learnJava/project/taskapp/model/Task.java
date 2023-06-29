@@ -15,6 +15,7 @@ public class Task {
 	private String task;
 	private String taskStatus;
 	private LocalDateTime completedAt;
+	private boolean isDeleted;
 
 	/**
 	 * @return the task
@@ -70,6 +71,20 @@ public class Task {
 	 */
 	public void setCompletedAt(LocalDateTime completedAt) {
 		this.completedAt = completedAt;
+	}
+
+	/**
+	 * @return the isDeleted
+	 */
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	/**
+	 * @param isDeleted the isDeleted to set
+	 */
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 }
