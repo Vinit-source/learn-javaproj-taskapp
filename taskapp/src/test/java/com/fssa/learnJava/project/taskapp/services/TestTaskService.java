@@ -5,6 +5,7 @@ package com.fssa.learnJava.project.taskapp.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -107,17 +108,56 @@ class TestTaskService {
 			addTaskService.addTask(task);
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			assertEquals(e.getMessage(), "Invalid task input entered.");
+			assertEquals(e.getMessage(), "Task data not initialized.");
 		}
 
 	}
 
 	@Test
-	public void testListTasksFeature() throws Exception {
+	public void testListTasksSuccess() {
 		TaskService taskService = new TaskService();
+		try {
+			List<Task> testTasks = taskService.getAllTasks();
+			System.out.println(testTasks);
+			assertTrue(testTasks.size() > 0);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
-		List<Task> testTasks = taskService.getAllTasks();
-		System.out.println(testTasks);
-		assertTrue(testTasks.size() > 0);
+	@Test
+	public void testEditTasksDescriptionUpdateSuccess() {
+		TaskService taskService = new TaskService();
+		try {			
+			List<Task> tasksFromDB = taskService.getAllTasks();
+			
+			Task task = new Task();
+			task = tasksFromDB.get(tasksFromDB.size()-1);
+			task.setTask("Some different task");
+			
+			assertTrue(taskService.editTask(task));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
+
+	@Test
+	public void testEditTasksStatusUpdateSuccess() {
+		TaskService taskService = new TaskService();
+		try {			
+			List<Task> tasksFromDB = taskService.getAllTasks();
+			
+			Task task = new Task();
+			task = tasksFromDB.get(tasksFromDB.size()-1);
+			task.setTaskStatus("COMPLETED");
+			task.setCompletedAt(LocalDateTime.now());
+			assertTrue(taskService.editTask(task));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

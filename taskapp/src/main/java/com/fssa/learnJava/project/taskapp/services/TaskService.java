@@ -8,6 +8,7 @@ import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 import com.fssa.learnJava.project.taskapp.validation.InvalidTaskException;
 import com.fssa.learnJava.project.taskapp.validation.TaskValidator;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fssa.learnJava.project.taskapp.dao.TaskDao;
@@ -32,7 +33,7 @@ public class TaskService {
 			// Business logic comes in the service layer
 			task.setTaskStatus("PENDING");
 
-			if (this.taskValidator.validateNewTask(task)) {
+			if (taskValidator.validateNewTask(task)) {
 
 				if (taskDao.createTask(task)) {
 					System.out.println("Task successfully added!");
@@ -53,19 +54,34 @@ public class TaskService {
 	}
 
 	public List<Task> getAllTasks() throws ServiceException {
-
+		List<Task> tasksFromDB;
 		try {
-			List<Task> tasksFromDB = taskDao.getAllTasks();
-
-			System.out.println(" Sr.No.  | Task Name                | Status           | Actions      ");
+			tasksFromDB = taskDao.getAllTasks();
+			System.out.format("%-8s | %-25s | %-15s | %-10s%n", "Sr.No.", "Task Name", "Status", "Actions");
 			for (Task task : tasksFromDB) {
-				String formattedString = String.format("%-10d|%-26s|%-18s|", task.getId(), task.getTask(),
-						task.getTaskStatus());
-				System.out.println(formattedString);
+				System.out.format("%-8d | %-25s | %-15s | %s%n", task.getId(), task.getTask(), task.getTaskStatus(),
+						"");
 			}
-			return tasksFromDB;
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
+		return tasksFromDB;
 	}
+
+	public boolean editTask(Task task) throws ServiceException {
+		boolean operationStatus = false;
+		try {
+			if (taskValidator.validateTaskStatus(task.getTaskStatus()) && taskValidator.validateCompletedAt(task)) {
+				operationStatus = taskDao.updateTask(task);
+			}
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		} catch (InvalidTaskException e) {
+			throw new ServiceException(e);
+		}
+		System.out.println("The task with id " + task.getId() + " was edited successfully!");
+		return operationStatus;
+
+	}
+
 }

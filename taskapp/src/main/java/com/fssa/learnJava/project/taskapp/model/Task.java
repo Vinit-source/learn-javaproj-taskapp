@@ -3,6 +3,8 @@
  */
 package com.fssa.learnJava.project.taskapp.model;
 
+import java.time.LocalDateTime;
+
 /**
  * @author VinitGore
  *
@@ -11,22 +13,8 @@ public class Task {
 
 	private int id;
 	private String task;
-
-//	public enum TaskStatus {
-//	    PENDING("Pending"),
-//	    COMPLETED("Completed");
-//
-//	    private String status;
-//
-//	    private TaskStatus(String status) {
-//	        this.status = status;
-//	    }
-//
-//	    public String getStatus() {
-//	        return status;
-//	    }
-//	}
 	private String taskStatus;
+	private LocalDateTime completedAt;
 
 	/**
 	 * @return the task
@@ -68,6 +56,20 @@ public class Task {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the completedAt
+	 */
+	public LocalDateTime getCompletedAt() {
+		return completedAt;
+	}
+
+	/**
+	 * @param completedAt the completedAt to set
+	 */
+	public void setCompletedAt(LocalDateTime completedAt) {
+		this.completedAt = completedAt;
 	}
 
 }

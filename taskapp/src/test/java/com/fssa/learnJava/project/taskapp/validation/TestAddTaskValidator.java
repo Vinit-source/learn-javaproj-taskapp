@@ -14,7 +14,7 @@ import com.fssa.learnJava.project.taskapp.model.Task;
  * @author Vinit Gore
  *
  **/
-public class TestTaskValidator {
+public class TestAddTaskValidator {
 	TaskValidator taskValidator = new TaskValidator();
 	
 	@Test
