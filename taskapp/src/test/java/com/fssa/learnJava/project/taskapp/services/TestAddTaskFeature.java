@@ -5,12 +5,14 @@ package com.fssa.learnJava.project.taskapp.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
+import com.fssa.learnJava.project.taskapp.helper.HelperMethods;
 
 /**
  * @author Vinit Gore
@@ -18,30 +20,33 @@ import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
  **/
 public class TestAddTaskFeature {
 	@Test
-	public void testAddTaskSuccess() throws Exception {
-		UserService loginService = new UserService();
-		TaskService addTaskService = new TaskService();
+	public void testAddTaskSuccess() {
+		try {
+			UserService userService = new UserService();
+			TaskService addTaskService = new TaskService();
 
-		User user = new User();
-		// System.out.println("Enter user name:");
-		// String userName = scanner.nextLine();
-		//
-		// System.out.println("Enter Password: ");
-		// String userPassword = scanner.nextLine();
+			User user = new User();
 
-		user.setEmail("vinit.gore@ctr.freshworks.com");
-		user.setPassword("1234567890");
+			user.setEmail("vinit.gore@ctr.freshworks.com");
+			user.setPassword("1234567890");
 
-		// To be used when tasks are filtered w.r.t. user.
-		String loggedInUser = loginService.login(user);
-
-		Task task = new Task();
-//		System.out.println("Task Name: ");
-//		String taskName = scanner.nextLine();
-//		task.setTask(taskName);
-		task.setTask("Install MySQL Workbench");
-
-		assertTrue(addTaskService.addTask(task));
+			// To be used when tasks are filtered w.r.t. user.
+			User loggedInUser = userService.login(user);
+			if (loggedInUser != null) {
+				Task task = new Task();
+				task.setTask("Install MySQL Workbench");
+				task.setCreatedBy(loggedInUser);
+				boolean status = addTaskService.addTask(task);
+				assertTrue(status);
+			} else {
+				fail("User login failed.");
+			}
+		} catch (ServiceException e) {
+//			e.printStackTrace();
+			fail();
+		} finally {
+			HelperMethods.logoutHelper();
+		}
 	}
 
 	@Test
@@ -50,29 +55,25 @@ public class TestAddTaskFeature {
 		TaskService addTaskService = new TaskService();
 
 		User user = new User();
-		// System.out.println("Enter user name:");
-		// String userName = scanner.nextLine();
-		//
-		// System.out.println("Enter Password: ");
-		// String userPassword = scanner.nextLine();
 
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("1234567890");
 
 		// To be used when tasks are filtered w.r.t. user.
-		String loggedInUser = loginService.login(user);
-
-		Task task = new Task();
-//		System.out.println("Task Name: ");
-//		String taskName = scanner.nextLine();
-//		task.setTask(taskName);
-		task.setTask("");
-
 		try {
-			addTaskService.addTask(task);
+			User loggedInUser = loginService.login(user);
+			if (loggedInUser != null) {
+				Task task = new Task();
+				task.setTask("");
+				addTaskService.addTask(task);
+			} else {
+				fail("User Login failed.");
+			}
 		} catch (ServiceException e) {
 //			e.printStackTrace();
 			assertEquals(e.getMessage(), "Invalid task input entered.");
+		} finally {
+			HelperMethods.logoutHelper();
 		}
 
 	}
@@ -83,26 +84,27 @@ public class TestAddTaskFeature {
 		TaskService addTaskService = new TaskService();
 
 		User user = new User();
-		// System.out.println("Enter user name:");
-		// String userName = scanner.nextLine();
-		//
-		// System.out.println("Enter Password: ");
-		// String userPassword = scanner.nextLine();
 
 		user.setEmail("vinit.gore@ctr.freshworks.com");
 		user.setPassword("1234567890");
 
 		// To be used when tasks are filtered w.r.t. user.
-		String loggedInUser = loginService.login(user);
-
-		Task task = null;
-
 		try {
-			addTaskService.addTask(task);
+			User loggedInUser = loginService.login(user);
+			if (loggedInUser != null) {
+				Task task = null;
+				addTaskService.addTask(task);
+			} else {
+				fail("User Login failed.");
+			}
 		} catch (ServiceException e) {
 //			e.printStackTrace();
 			assertEquals(e.getMessage(), "Task data not initialized.");
+		} finally {
+			HelperMethods.logoutHelper();
 		}
 
 	}
+
+	
 }

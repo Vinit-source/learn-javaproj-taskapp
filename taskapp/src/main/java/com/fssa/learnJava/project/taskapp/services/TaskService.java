@@ -4,6 +4,7 @@
 package com.fssa.learnJava.project.taskapp.services;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
+import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 import com.fssa.learnJava.project.taskapp.validation.InvalidTaskException;
 import com.fssa.learnJava.project.taskapp.validation.TaskValidator;
@@ -22,27 +23,24 @@ public class TaskService {
 
 	TaskValidator taskValidator;
 	TaskDAO taskDAO;
+	UserService userService;
 
-	public TaskService() {
+	public TaskService() throws ServiceException{
 		this.taskValidator = new TaskValidator();
 		this.taskDAO = new TaskDAO();
+		this.userService = new UserService();
 	}
 
 	public boolean addTask(Task task) throws ServiceException {
 		try {
-			// Business logic comes in the service layer
+			// Business rule: New task default status should be PENDING
+			User loggedInUser = userService.getLoggedInUser();
+			
 			task.setTaskStatus("PENDING");
-
-			if (taskValidator.validateNewTask(task)) {
-
-				if (taskDAO.createTask(task)) {
-					System.out.println("Task successfully added!");
-					return true;
-				} else {
-					System.out.println("Task not added");
-					return false;
-				}
-			}
+			task.setCreatedBy(loggedInUser);  	// TODO: Add validation to check user null or not
+			taskValidator.validateNewTask(task);
+			taskDAO.createTask(task);
+			return true;
 		} catch (InvalidTaskException e) {
 			throw new ServiceException("Invalid task input entered.", e);
 		} catch (DAOException e) {
@@ -50,7 +48,6 @@ public class TaskService {
 		} catch (NullPointerException e) {
 			throw new ServiceException("Task data not initialized.", e);
 		}
-		return false;
 	}
 
 	public List<Task> getAllTasks() throws ServiceException {

@@ -18,13 +18,11 @@ import com.fssa.learnJava.project.taskapp.model.User;
  */
 public class UserDAO {
 
-	
 	public boolean createUser(User user) throws DAOException {
 
 		String query = "INSERT INTO users (user_name, email_id, password) VALUES ( ?, ?, ? );";
 
-		try (	
-				Connection connection = ConnectionUtil.getConnection();
+		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
 
 			pst.setString(1, user.getName());
@@ -35,17 +33,10 @@ public class UserDAO {
 				return true;
 			else
 				return false;
-			// Example for multi catch
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} catch (ClassNotFoundException e) {	// FIXME: Why ClassNotFoundException occurs?
+			// Example for multi-catch
+		} catch (SQLException | ClassNotFoundException e) { // FIXME: Why ClassNotFoundException occurs?
 			throw new DAOException(e);
 		}
-
-	}
-
-	public void updateUser(User user) {
-
 	}
 
 	public User getUserByUserName(String userName) throws DAOException {
@@ -82,14 +73,13 @@ public class UserDAO {
 		User userFromDB = new User();
 		final String selectQuery = "SELECT user_id,user_name,password,email_id FROM users WHERE email_id = ?";
 
-		try (
-				Connection connection = ConnectionUtil.getConnection();
+		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(selectQuery)) {
 
 			pst.setString(1, email);
-			
+
 			// Step 04: Execute SELECT Query
-			try (ResultSet rs = pst.executeQuery(); ) {
+			try (ResultSet rs = pst.executeQuery();) {
 
 				// Step 06: Iterate the result
 				if (rs.next()) {
@@ -101,12 +91,56 @@ public class UserDAO {
 				}
 			}
 
-		} catch (SQLException sqe) {
-			throw new DAOException(sqe);
-		} catch (ClassNotFoundException e) {	// FIXME: Throwing separate exceptions separately - is it a best practice?
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new DAOException(e);
 		}
 		return userFromDB;
+	}
+
+	/**
+	 * @param fromDb
+	 * @param b
+	 * @throws DAOException
+	 */
+	public boolean changeLoginStatus(User user, boolean loginStatus) throws DAOException {
+		boolean methodStatus = false;
+		final String selectQuery = "UPDATE users SET is_logged_in = ? WHERE email_id = ?";
+
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pst = connection.prepareStatement(selectQuery)) {
+
+			pst.setBoolean(1, loginStatus);
+			pst.setString(2, user.getEmail());
+
+			int rows = pst.executeUpdate();
+
+			methodStatus = rows > 0;
+			return methodStatus;
+
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new DAOException(e);
+		}
+	}
+
+	/**
+	 * @return
+	 * @throws DAOException 
+	 */
+	public User findLoggedInUser() throws DAOException {
+		User loggedInUser = new User();
+		final String selectQuery = "SELECT user_id FROM users WHERE is_logged_in = 1";
+
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pst = connection.prepareStatement(selectQuery);
+				ResultSet rs = pst.executeQuery();) {
+			if (rs.next())
+				loggedInUser.setId(rs.getInt("user_id"));
+
+			return loggedInUser;
+
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new DAOException(e);
+		}
 	}
 
 //	@Override

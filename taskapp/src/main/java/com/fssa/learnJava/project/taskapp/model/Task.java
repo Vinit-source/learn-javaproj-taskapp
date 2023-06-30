@@ -16,6 +16,7 @@ public class Task {
 	private String taskStatus;
 	private LocalDateTime completedAt;
 	private boolean isDeleted;
+	private User createdBy;
 
 	/**
 	 * @return the task
@@ -85,6 +86,20 @@ public class Task {
 	 */
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	/**
+	 * @return the createdBy
+	 */
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 }

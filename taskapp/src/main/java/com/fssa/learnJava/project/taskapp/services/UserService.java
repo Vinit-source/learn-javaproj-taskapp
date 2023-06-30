@@ -19,43 +19,37 @@ import com.fssa.learnJava.project.taskapp.validation.ValidatorInitializationExce
  */
 public class UserService {
 
-	private UserDAO userdao;
+	private UserDAO userDAO;
 	private UserValidator userValidator;
 	private final int minPasswordLen = 8;
 
 	public UserService() throws ServiceException {
 		try {
-			this.userdao = new UserDAO();
+			this.userDAO = new UserDAO();
 			this.userValidator = new UserValidator(this.minPasswordLen);
-		} catch ( ValidatorInitializationException e) {
+		} catch (ValidatorInitializationException e) {
 			throw new ServiceException(e);
 		}
 
 	}
 
-
-	public String login(User user) throws ServiceException {
+	public User login(User user) throws ServiceException {
 		User fromDb;
-
 		try {
-			if (!userValidator.validateLoggingInUser(user)) {
-				throw new ServiceException("Invalid input credentials. Please meet the required input formats.");
-			}
-		} catch (InvalidUserException e1) {
-			throw new ServiceException("Invalid input credentials. Please meet the required input formats.");
-		}
+			userValidator.validateLoggingInUser(user);
 
-		try {
-			fromDb = this.userdao.getUserByEmail(user.getEmail());
+			fromDb = userDAO.getUserByEmail(user.getEmail());
 
 			if (user.getPassword().equals(fromDb.getPassword())) {
-				return "SUCCESSFUL";
-//				return "UNSUCCESFUL";
+				userDAO.changeLoginStatus(fromDb, true);
+				return fromDb;	
 			} else {
-				return "Invalid Login Credentials";
+				return null;
 			}
 		} catch (DAOException ex) {
 			throw new ServiceException(ex);
+		} catch (InvalidUserException e1) {
+			throw new ServiceException("Invalid input credentials. Please meet the required input formats.");
 		}
 
 	}
@@ -71,7 +65,7 @@ public class UserService {
 		}
 
 		try {
-			userFromDb = userdao.getUserByEmail(user.getEmail());
+			userFromDb = userDAO.getUserByEmail(user.getEmail());
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
@@ -81,13 +75,30 @@ public class UserService {
 			return "Email id " + user.getEmail() + " is already registered";
 		} else {
 			try {
-				if (userdao.createUser(user))
+				if (userDAO.createUser(user))
 					return "Registration Successful";
 				else
 					return "Registration Failed";
 			} catch (DAOException e) {
 				throw new ServiceException(e);
 			}
+		}
+	}
+	
+	public User getLoggedInUser() throws ServiceException {
+		try {
+			return userDAO.findLoggedInUser();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	public boolean logout() throws ServiceException {
+		try {
+			User user = getLoggedInUser();
+			return userDAO.changeLoginStatus(user, false);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
 		}
 	}
 }

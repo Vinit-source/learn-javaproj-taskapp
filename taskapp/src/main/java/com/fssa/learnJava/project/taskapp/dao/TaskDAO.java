@@ -20,29 +20,26 @@ import com.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverter;
  *
  */
 public class TaskDAO {
-	
+
 	/**
 	 * 
 	 */
 	public boolean createTask(Task task) throws DAOException {
-		String query = "INSERT INTO tasks (task, task_status) VALUES (?, ?);";
+		String query = "INSERT INTO tasks (task, task_status, user_id) VALUES (?, ?, ?);";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
 			pst.setString(1, task.getTask());
 			pst.setString(2, task.getTaskStatus());
-
+			pst.setInt(3, task.getCreatedBy().getId());
 			int rows = pst.executeUpdate();
 
-			if (rows > 0)
-				return true;
-			else
-				return false;
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		} catch (Exception e) {
+			return (rows > 0);
+
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new DAOException(e);
 		}
+
 	}
 
 	public List<Task> getAllTasks() throws DAOException {
@@ -71,9 +68,7 @@ public class TaskDAO {
 				task.setCompletedAt(completedAt);
 				tasks.add(task);
 			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new DAOException(e);
 		}
 		return tasks;
@@ -94,20 +89,17 @@ public class TaskDAO {
 			int rows = pst.executeUpdate();
 
 			methodStatus = rows > 0;
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} catch (ClassNotFoundException e) {
+			return methodStatus;
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new DAOException(e);
 		}
-		return methodStatus;
 	}
 
 	/**
 	 * @param task
-	 * @throws DAOException 
+	 * @throws DAOException
 	 */
 	public boolean removeTask(Task task) throws DAOException {
-		boolean methodStatus = false;
 		String query = "UPDATE tasks SET is_deleted = ? WHERE id = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
@@ -116,13 +108,10 @@ public class TaskDAO {
 
 			int rows = pst.executeUpdate();
 
-			methodStatus = rows > 0;
-		} catch (SQLException e) {
+			return rows > 0;
+		} catch (SQLException | ClassNotFoundException e) {
 			throw new DAOException(e);
-		} catch (ClassNotFoundException e) {
-			throw new DAOException(e);
-		}		
-		return methodStatus;
+		} 
 	}
 
 }

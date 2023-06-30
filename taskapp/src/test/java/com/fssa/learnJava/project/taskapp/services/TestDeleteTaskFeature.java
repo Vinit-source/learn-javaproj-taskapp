@@ -22,11 +22,10 @@ import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 public class TestDeleteTaskFeature {
 	@Test
 	public void testDeleteTaskSuccess() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
+
 			List<Task> tasksFromDB = taskService.getAllTasks();
-			int a;
-			System.out.println(a);
 			// Find one PENDING task from DB
 			Task pendingTask = null; // Initialize with a default value
 
@@ -45,15 +44,15 @@ public class TestDeleteTaskFeature {
 			}
 
 		} catch (ServiceException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			fail();
 		}
 	}
 
 	@Test
 	public void testTaskNotPresentInDB() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
 			// Create a random task that should not be present in DB
 			Task randomTask = new Task(); // Initialize with a default value
 			randomTask.setId(9999999);
@@ -69,8 +68,8 @@ public class TestDeleteTaskFeature {
 
 	@Test
 	public void testDeleteCompletedTask() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
 			List<Task> tasksFromDB = taskService.getAllTasks();
 
 			// Find one COMPLETED task from DB

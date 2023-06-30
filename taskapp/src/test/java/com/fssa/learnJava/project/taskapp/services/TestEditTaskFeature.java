@@ -23,8 +23,8 @@ public class TestEditTaskFeature {
 
 	@Test
 	public void testEditTasksDescriptionUpdateSuccess() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
 			List<Task> tasksFromDB = taskService.getAllTasks();
 
 			Task task = new Task();
@@ -42,8 +42,9 @@ public class TestEditTaskFeature {
 
 	@Test
 	public void testEditTasksStatusUpdateSuccess() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
+
 			List<Task> tasksFromDB = taskService.getAllTasks();
 
 			Task task = new Task();
@@ -59,8 +60,8 @@ public class TestEditTaskFeature {
 
 	@Test
 	public void testEditTasksStatusUpdateWithoutCompletedTime() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
 			Task taskToAdd = new Task();
 			taskToAdd.setTask("Running 'testEditTasksStatusUpdateWithoutCompletedTime'");
 			taskService.addTask(taskToAdd);

@@ -21,8 +21,8 @@ public class TestListTaskFeature {
 
 	@Test
 	public void testListTasksSuccess() {
-		TaskService taskService = new TaskService();
 		try {
+			TaskService taskService = new TaskService();
 			List<Task> testTasks = taskService.getAllTasks();
 			System.out.println(testTasks);
 			assertTrue(testTasks.size() > 0);

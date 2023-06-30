@@ -5,6 +5,7 @@ public class User {
 	private String name;
 	private String password;
 	private String email;
+	private boolean isLoggedIn;
 	
 	public int getId() {
 		return id;
@@ -29,6 +30,18 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	/**
+	 * @return the isLoggedIn
+	 */
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+	/**
+	 * @param isLoggedIn the isLoggedIn to set
+	 */
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
 	}
 	
 	
