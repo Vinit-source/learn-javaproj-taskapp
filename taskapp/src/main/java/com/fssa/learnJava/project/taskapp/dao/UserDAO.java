@@ -34,7 +34,7 @@ public class UserDAO {
 			else
 				return false;
 			// Example for multi-catch
-		} catch (SQLException | ClassNotFoundException e) { // FIXME: Why ClassNotFoundException occurs?
+		} catch (SQLException e) { // FIXME: Why ClassNotFoundException occurs?
 			throw new DAOException(e);
 		}
 	}
@@ -61,10 +61,7 @@ public class UserDAO {
 			}
 		} catch (SQLException sqe) {
 			throw new DAOException(sqe);
-		} catch (ClassNotFoundException e) {
-			throw new DAOException(e);
 		}
-
 		return userFromDB;
 	}
 
@@ -91,7 +88,7 @@ public class UserDAO {
 				}
 			}
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 		return userFromDB;
@@ -117,7 +114,7 @@ public class UserDAO {
 			methodStatus = rows > 0;
 			return methodStatus;
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}
@@ -138,7 +135,7 @@ public class UserDAO {
 
 			return loggedInUser;
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}

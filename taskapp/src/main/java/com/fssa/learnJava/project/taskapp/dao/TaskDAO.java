@@ -25,7 +25,7 @@ public class TaskDAO {
 	 * 
 	 */
 	public boolean createTask(Task task) throws DAOException {
-		String query = "INSERT INTO tasks (task, task_status, user_id) VALUES (?, ?, ?);";
+		String query = "INSERT INTO tasks (task, task_status, user_id) VALUES (?, ?, ?)";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
@@ -36,7 +36,7 @@ public class TaskDAO {
 
 			return (rows > 0);
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 
@@ -68,7 +68,7 @@ public class TaskDAO {
 				task.setCompletedAt(completedAt);
 				tasks.add(task);
 			}
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 		return tasks;
@@ -77,7 +77,6 @@ public class TaskDAO {
 
 	public boolean editTask(Task task) throws DAOException {
 
-		boolean methodStatus = false;
 		String query = "UPDATE tasks SET task = ?, task_status = ?, completed_at = ? WHERE id = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
@@ -88,9 +87,8 @@ public class TaskDAO {
 
 			int rows = pst.executeUpdate();
 
-			methodStatus = rows > 0;
-			return methodStatus;
-		} catch (SQLException | ClassNotFoundException e) {
+			return rows > 0;
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}
@@ -109,7 +107,7 @@ public class TaskDAO {
 			int rows = pst.executeUpdate();
 
 			return rows > 0;
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		} 
 	}
