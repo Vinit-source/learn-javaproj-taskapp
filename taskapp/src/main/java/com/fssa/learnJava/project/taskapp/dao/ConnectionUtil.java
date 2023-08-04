@@ -11,9 +11,9 @@ public class ConnectionUtil {
 	public static Connection getConnection() throws SQLException {
 
 		Connection con = null;
-		String url = "jdbc:mysql://101.53.132.234/corejava_demoapp_vineeth";
-		String userName = "vineeth";
-		String passWord = "Vineeth123";
+		String url = "jdbc:mysql://164.52.216.41/vinit_core_java_project";
+		String userName = "vinit";
+		String passWord = "vinit$fssa$2023";
 //		try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");	// Checks if the Driver is present in the memory. Driver is responsible for connection to DB. Loads a class to memory without instantiating it
 		con = DriverManager.getConnection(url, userName, passWord);

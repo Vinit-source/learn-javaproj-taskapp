@@ -61,7 +61,7 @@ public class TestDeleteTaskFeature {
 			fail();
 
 		} catch (ServiceException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			assertEquals("Task with id 9999999 not present", e.getMessage());
 		}
 	}

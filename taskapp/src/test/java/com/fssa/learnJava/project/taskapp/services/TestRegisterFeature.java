@@ -18,7 +18,7 @@ import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
  *
  */
 public class TestRegisterFeature {
-
+	
 	@Test
 	public void testNewRegisteringUser() {
 		try {
