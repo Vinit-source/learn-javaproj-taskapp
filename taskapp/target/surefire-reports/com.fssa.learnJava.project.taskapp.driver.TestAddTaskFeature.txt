@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 2.774 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature
+testAddEmptyTask  Time elapsed: 0.406 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Invalid task input entered.> but was: <>
+	at com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature.testAddEmptyTask(TestAddTaskFeature.java:80)
+
+testAddNullTask  Time elapsed: 0.34 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Invalid task input entered.> but was: <>
+	at com.fssa.learnJava.project.taskapp.driver.TestAddTaskFeature.testAddNullTask(TestAddTaskFeature.java:109)
+

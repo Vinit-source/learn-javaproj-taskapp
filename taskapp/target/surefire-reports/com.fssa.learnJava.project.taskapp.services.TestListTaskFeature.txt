@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestListTaskFeature
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.417 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestListTaskFeature
+testListTasksSuccess  Time elapsed: 0.417 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at com.fssa.learnJava.project.taskapp.services.TestListTaskFeature.testListTasksSuccess(TestListTaskFeature.java:28)
+

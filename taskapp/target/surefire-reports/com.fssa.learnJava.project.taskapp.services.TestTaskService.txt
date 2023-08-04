@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestTaskService
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.75 s - in com.fssa.learnJava.project.taskapp.services.TestTaskService

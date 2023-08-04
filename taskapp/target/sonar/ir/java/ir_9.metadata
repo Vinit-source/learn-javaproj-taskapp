@@ -1,0 +1,2 @@
+com.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverter#convertToSQLTimestamp(Ljava/time/LocalDateTime;)Ljava/sql/Timestamp;
+java.sql.Timestamp#valueOf(Ljava/time/LocalDateTime;)Ljava/sql/Timestamp;

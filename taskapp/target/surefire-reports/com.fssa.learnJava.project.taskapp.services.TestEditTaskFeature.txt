@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestEditTaskFeature
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 1.176 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestEditTaskFeature
+testEditTasksDescriptionUpdateSuccess  Time elapsed: 0.401 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 0
+	at com.fssa.learnJava.project.taskapp.services.TestEditTaskFeature.testEditTasksDescriptionUpdateSuccess(TestEditTaskFeature.java:31)
+
+testEditTasksStatusUpdateSuccess  Time elapsed: 0.374 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 0
+	at com.fssa.learnJava.project.taskapp.services.TestEditTaskFeature.testEditTasksStatusUpdateSuccess(TestEditTaskFeature.java:51)
+
+testEditTasksStatusUpdateWithoutCompletedTime  Time elapsed: 0.4 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Task Completed time cannot be null for COMPLETED tasks.> but was: <com.fssa.learnJava.project.taskapp.dao.exception.DAOException: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'>
+	at com.fssa.learnJava.project.taskapp.services.TestEditTaskFeature.testEditTasksStatusUpdateWithoutCompletedTime(TestEditTaskFeature.java:78)
+

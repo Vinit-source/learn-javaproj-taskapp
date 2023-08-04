@@ -1,0 +1,157 @@
+
+Ucom.fssa.learnJava.project.taskapp.services.TaskService#getAllTasks()Ljava/util/List;£
+òC:/Users/VinitGore/Documents/eclipse-workspace/learn-javaproj-taskapp/taskapp/src/main/java/com/fssa/learnJava/project/taskapp/services/TaskService.java3 3("13*k
+134 4(U
+S
+4 4(
+tasksFromDBjava.util.List"__id*"
+
+__unknown_file (
+""*
+12*∏
+48 8(m
+k
+8 8(5
+task-com.fssa.learnJava.project.taskapp.model.Task"__id*"
+
+__unknown_file (
+""±
+Æ
+8 8(5
+task-com.fssa.learnJava.project.taskapp.model.Task"
+__arrayGet*;
+
+__unknown_file (
+
+tasksFromDBjava.util.List*"
+
+__unknown_file (
+""*
+9
+1*¸
+59 :(Á‰
+9 :(
+%9java.io.PrintStream"Vjava.io.PrintStream#format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;*7
+
+__unknown_file (
+
+%4java.io.PrintStream*;
+
+__unknown_file (
+%-8d | %-25s | %-15s | %s%n*'
+
+__unknown_file (
+	
+%5int*4
+
+__unknown_file (
+
+%6java.lang.String*4
+
+__unknown_file (
+
+%7java.lang.String*+
+
+__unknown_file (
+
+%8boolean2-format(Ljava/lang/String;[Ljava/lang/Object;)*
+4*œ
+6: :(
+∫∑
+: :(
+%8boolean":com.fssa.learnJava.project.taskapp.model.Task#isDeleted()Z*S
+
+__unknown_file (7
+5
+task-com.fssa.learnJava.project.taskapp.model.Task2isDeleted()*
+5*Ò
+79S 9(W‹Ÿ
+9S 9(g
+%7java.lang.String"Ocom.fssa.learnJava.project.taskapp.model.Task#getTaskStatus()Ljava/lang/String;*S
+
+__unknown_file (7
+5
+task-com.fssa.learnJava.project.taskapp.model.Task2getTaskStatus()*
+6*Â
+89C 9(G–Õ
+9C 9(Q
+%6java.lang.String"Icom.fssa.learnJava.project.taskapp.model.Task#getTask()Ljava/lang/String;*S
+
+__unknown_file (7
+5
+task-com.fssa.learnJava.project.taskapp.model.Task2	getTask()*
+7*ñ
+99 9(
+Q
+O
+9 9(
+%4java.io.PrintStream"__id*"
+
+__unknown_file (
+""Æ´
+95 9(A	
+%5int"6com.fssa.learnJava.project.taskapp.model.Task#getId()I*S
+
+__unknown_file (7
+5
+task-com.fssa.learnJava.project.taskapp.model.Task2getId()*
+8*ü
+116 6(&e
+c
+6 6(&
+tasksFromDBjava.util.List"__id*2
+
+__unknown_file (
+
+%1java.util.ListQ
+O
+7 7(
+%2java.io.PrintStream"__id*"
+
+__unknown_file (
+""œÃ
+7 7(e
+%3java.io.PrintStream"Vjava.io.PrintStream#format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;*7
+
+__unknown_file (
+
+%2java.io.PrintStream*>
+
+__unknown_file (" 
+%-8s | %-25s | %-15s | %-10s%n*&
+
+__unknown_file (
+
+Sr.No.*)
+
+__unknown_file (
+	Task Name*&
+
+__unknown_file (
+
+Status**
+
+__unknown_file (
+
+isDeleted?2-format(Ljava/lang/String;[Ljava/lang/Object;)*
+4*ù
+126 6(Ø
+¨
+6 6(4
+%0.com.fssa.learnJava.project.taskapp.dao.TaskDAO"__id*d
+
+__unknown_file (H*F9
+7com.fssa.learnJava.project.taskapp.services.TaskService"	
+taskDAO‘—
+6 6(&
+%1java.util.List"Lcom.fssa.learnJava.project.taskapp.dao.TaskDAO#getAllTasks()Ljava/util/List;*R
+
+__unknown_file (6
+4
+%0.com.fssa.learnJava.project.taskapp.dao.TaskDAO2getAllTasks()*
+11*:
+1?	 ?("+
+? ?(
+
+tasksFromDBjava.util.ListB;9
+7com.fssa.learnJava.project.taskapp.services.TaskServiceH

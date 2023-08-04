@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestDeleteTaskFeature
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.049 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestDeleteTaskFeature
+testDeleteCompletedTask  Time elapsed: 0.352 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No completed task found.
+	at com.fssa.learnJava.project.taskapp.services.TestDeleteTaskFeature.testDeleteCompletedTask(TestDeleteTaskFeature.java:90)
+
+testDeleteTaskSuccess  Time elapsed: 0.338 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No pending task found.
+	at com.fssa.learnJava.project.taskapp.services.TestDeleteTaskFeature.testDeleteTaskSuccess(TestDeleteTaskFeature.java:43)
+

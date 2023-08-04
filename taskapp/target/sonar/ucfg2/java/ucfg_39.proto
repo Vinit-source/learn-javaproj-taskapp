@@ -1,0 +1,15 @@
+
+Wcom.fssa.learnJava.project.taskapp.model.Task#getCompletedAt()Ljava/time/LocalDateTime;ô
+éC:/Users/VinitGore/Documents/eclipse-workspace/learn-javaproj-taskapp/taskapp/src/main/java/com/fssa/learnJava/project/taskapp/model/Task.javaB B($"1*œ
+1C	 C(í
+è
+C	 C(
+%0java.time.LocalDateTime"__id*^
+
+__unknown_file (B*@/
+-com.fssa.learnJava.project.taskapp.model.Task"
+completedAt"+
+C C(
+
+%0java.time.LocalDateTimeB1/
+-com.fssa.learnJava.project.taskapp.model.TaskH

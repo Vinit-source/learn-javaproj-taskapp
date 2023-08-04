@@ -1,0 +1,3 @@
+com.fssa.learnJava.project.taskapp.validation.UserValidator#<init>(I)V
+com.fssa.learnJava.project.taskapp.validation.ValidatorInitializationException#instance-init#
+com.fssa.learnJava.project.taskapp.validation.ValidatorInitializationException#<init>(Ljava/lang/String;)V

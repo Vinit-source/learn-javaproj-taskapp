@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestRegisterFeature
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.757 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestRegisterFeature
+testNewRegisteringUser  Time elapsed: 0.33 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Invalid User> but was: <com.fssa.learnJava.project.taskapp.dao.exception.DAOException: java.sql.SQLSyntaxErrorException: Unknown column 'user_id' in 'field list'>
+	at com.fssa.learnJava.project.taskapp.services.TestRegisterFeature.testNewRegisteringUser(TestRegisterFeature.java:35)
+
+testAlreadyRegisteredUser  Time elapsed: 0.417 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception while trying to register.
+	at com.fssa.learnJava.project.taskapp.services.TestRegisterFeature.testAlreadyRegisteredUser(TestRegisterFeature.java:52)
+

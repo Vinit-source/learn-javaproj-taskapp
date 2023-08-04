@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.driver.TestLoginFeature
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.812 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.driver.TestLoginFeature
+testLoginSuccess  Time elapsed: 0.265 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <UNSUCCESFUL> but was: <SUCCESSFUL>
+	at com.fssa.learnJava.project.taskapp.driver.TestLoginFeature.testLoginSuccess(TestLoginFeature.java:29)
+

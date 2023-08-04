@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestAddTaskFeature
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 5.623 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestAddTaskFeature
+testAddTaskSuccess  Time elapsed: 3.89 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestAddTaskFeature.testAddTaskSuccess(TestAddTaskFeature.java:48)
+
+testAddEmptyTask  Time elapsed: 0.825 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestAddTaskFeature.testAddEmptyTask(TestAddTaskFeature.java:76)
+
+testAddNullTask  Time elapsed: 0.908 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestAddTaskFeature.testAddNullTask(TestAddTaskFeature.java:104)
+

@@ -1,0 +1,7 @@
+com.fssa.learnJava.project.taskapp.validation.UserValidator#validateRegisteringUser(Lcom/fssa/learnJava/project/taskapp/model/User;)Z
+java.lang.String#length()I
+java.lang.String#isEmpty()Z
+com.fssa.learnJava.project.taskapp.validation.InvalidUserException#<init>(Ljava/lang/String;)V
+com.fssa.learnJava.project.taskapp.validation.InvalidUserException#instance-init#
+==
+validateEmail com.fssa.learnJava.project.taskapp.validation.UserValidator#validateEmail(Ljava/lang/String;)Z

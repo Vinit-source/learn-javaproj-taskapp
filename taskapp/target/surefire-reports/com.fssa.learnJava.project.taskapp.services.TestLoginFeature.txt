@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.fssa.learnJava.project.taskapp.services.TestLoginFeature
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 2.547 s <<< FAILURE! - in com.fssa.learnJava.project.taskapp.services.TestLoginFeature
+testLoginPasswordDoesNotMatch  Time elapsed: 0.419 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception while trying to test LoginPasswordDoesNotMatch.
+	at com.fssa.learnJava.project.taskapp.services.TestLoginFeature.testLoginPasswordDoesNotMatch(TestLoginFeature.java:107)
+
+testLoginSuccess  Time elapsed: 0.702 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestLoginFeature.testLoginSuccess(TestLoginFeature.java:34)
+
+testEmptyEmailId  Time elapsed: 0.372 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestLoginFeature.testEmptyEmailId(TestLoginFeature.java:52)
+
+testEmptyPassword  Time elapsed: 0.358 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestLoginFeature.testEmptyPassword(TestLoginFeature.java:69)
+
+testLoginEmailNotFound  Time elapsed: 0.693 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Failed to logout.
+	at com.fssa.learnJava.project.taskapp.services.TestLoginFeature.testLoginEmailNotFound(TestLoginFeature.java:88)
+

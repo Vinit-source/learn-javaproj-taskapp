@@ -1,0 +1,35 @@
+
+Žcom.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverter#convertToLocalDateTime(Ljava/sql/Timestamp;)Ljava/time/LocalDateTime;´
+©C:/Users/VinitGore/Documents/eclipse-workspace/learn-javaproj-taskapp/taskapp/src/main/java/com/fssa/learnJava/project/taskapp/utils/LocalDateTimeAttributeConverter.java  (6"2"3*u
+2A (Ea
+_
+A (E
+%0java.time.LocalDateTime"__id*.
+
+__unknown_file (
+
+%2
+<nulltype>*
+1*Â
+3# (,½º
+# (>
+%1java.time.LocalDateTime"=java.sql.Timestamp#toLocalDateTime()Ljava/time/LocalDateTime;*=
+
+__unknown_file (!
+
+	timestampjava.sql.Timestamp2toLocalDateTime()n
+l
+# (>
+%0java.time.LocalDateTime"__id*;
+
+__unknown_file (
+
+%1java.time.LocalDateTime*
+1*:
+1 (F"+
+ (F
+
+%0java.time.LocalDateTime:+
+7 (J
+	timestampjava.sql.TimestampBL"J
+Hcom.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverterH
