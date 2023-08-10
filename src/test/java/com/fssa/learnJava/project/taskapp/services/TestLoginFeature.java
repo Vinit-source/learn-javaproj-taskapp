@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.learnJava.project.taskapp.helper.HelperMethods;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.UserService;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
@@ -30,8 +29,6 @@ public class TestLoginFeature {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail("Exception while trying to test loginSuccess.");
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 
 	}
@@ -56,15 +53,13 @@ public class TestLoginFeature {
 
 		try {
 			UserService loginService = new UserService();
-			
+
 			User user = new User();
 			user.setEmail("vinit.gore@ctr.freshworks.com");
 			user.setPassword("");
 			loginService.login(user);
 		} catch (ServiceException e) {
 			assertEquals("Invalid input credentials. Please meet the required input formats.", e.getMessage());
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 	}
 
@@ -82,8 +77,6 @@ public class TestLoginFeature {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail("Exception while trying to test LoginEmailNotFound.");
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 
 	}
