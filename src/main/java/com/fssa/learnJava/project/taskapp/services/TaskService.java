@@ -37,6 +37,7 @@ public class TaskService {
 			User loggedInUser = userService.getLoggedInUser();
 
 			task.setTaskStatus("PENDING");
+			
 			task.setCreatedBy(loggedInUser); // TODO: Add validation to check user null or not
 			taskValidator.validateNewTask(task);
 			taskDAO.createTask(task);

@@ -3,6 +3,8 @@
  */
 package com.fssa.learnJava.project.taskapp.services.exception;
 
+import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
+
 /**
  * @author BharathwajSoundarara
  *

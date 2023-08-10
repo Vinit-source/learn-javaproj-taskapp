@@ -21,15 +21,10 @@ public class UserService {
 
 	private UserDAO userDAO;
 	private UserValidator userValidator;
-	private final int minPasswordLen = 8;
 
 	public UserService() throws ServiceException {
-		try {
-			this.userDAO = new UserDAO();
-			this.userValidator = new UserValidator(this.minPasswordLen);
-		} catch (ValidatorInitializationException e) {
-			throw new ServiceException(e);
-		}
+		this.userDAO = new UserDAO();
+		this.userValidator = new UserValidator();
 
 	}
 
@@ -41,15 +36,12 @@ public class UserService {
 			fromDb = userDAO.getUserByEmail(user.getEmail());
 
 			if (user.getPassword().equals(fromDb.getPassword())) {
-				userDAO.changeLoginStatus(fromDb, true);
-				return fromDb;	
+				return fromDb;
 			} else {
 				return null;
 			}
-		} catch (DAOException ex) {
-			throw new ServiceException(ex);
-		} catch (InvalidUserException e1) {
-			throw new ServiceException("Invalid input credentials. Please meet the required input formats.");
+		} catch (DAOException | InvalidUserException ex) {
+			throw new ServiceException(ex.getMessage(), ex);
 		}
 
 	}
@@ -57,48 +49,37 @@ public class UserService {
 	public String registerUser(User user) throws ServiceException {
 		User userFromDb;
 		try {
-			if (!userValidator.validateRegisteringUser(user)) {
-				throw new ServiceException("Invalid User");
-			}
-		} catch (InvalidUserException e1) {
-			throw new ServiceException("Invalid User", e1);
-		}
-
-		try {
+			userValidator.validateRegisteringUser(user);
 			userFromDb = userDAO.getUserByEmail(user.getEmail());
-		} catch (DAOException e) {
-			throw new ServiceException(e);
-		}
 
-		// TODO: Add user_name, email and attributes first before adding business logic
-		if (userFromDb.getEmail() != null && userFromDb.getEmail().equals(user.getEmail())) {
-			return "Email id " + user.getEmail() + " is already registered";
-		} else {
-			try {
+			// TODO: Add user_name, email and attributes first before adding business logic
+			if (userFromDb.getEmail() != null && userFromDb.getEmail().equals(user.getEmail())) {
+				return "Email id " + user.getEmail() + " is already registered";
+			} else {
 				if (userDAO.createUser(user))
 					return "Registration Successful";
 				else
 					return "Registration Failed";
-			} catch (DAOException e) {
-				throw new ServiceException(e);
 			}
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-	
-	public User getLoggedInUser() throws ServiceException {
-		try {
-			return userDAO.findLoggedInUser();
-		} catch (DAOException e) {
-			throw new ServiceException(e);
-		}
-	}
-	
-	public boolean logout() throws ServiceException {
-		try {
-			User user = getLoggedInUser();
-			return userDAO.changeLoginStatus(user, false);
-		} catch (DAOException e) {
-			throw new ServiceException(e);
-		}
-	}
+
+//	public User getLoggedInUser() throws ServiceException {
+//		try {
+//			return userDAO.findLoggedInUser();
+//		} catch (DAOException e) {
+//			throw new ServiceException(e);
+//		}
+//	}
+
+//	public boolean logout() throws ServiceException {
+//		try {
+//			User user = getLoggedInUser();
+//			return userDAO.changeLoginStatus(user, false);
+//		} catch (DAOException e) {
+//			throw new ServiceException(e);
+//		}
+//	}
 }

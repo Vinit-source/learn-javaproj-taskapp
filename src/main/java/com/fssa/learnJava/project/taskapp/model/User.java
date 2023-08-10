@@ -5,8 +5,29 @@ public class User {
 	private String name;
 	private String password;
 	private String email;
-	private boolean isLoggedIn;
 	
+	public User(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
+	/**
+	 * @param email
+	 * @param password
+	 */
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+	
+	/**
+	 * 
+	 */
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -31,18 +52,20 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/**
-	 * @return the isLoggedIn
-	 */
-	public boolean isLoggedIn() {
-		return isLoggedIn;
-	}
-	/**
-	 * @param isLoggedIn the isLoggedIn to set
-	 */
-	public void setLoggedIn(boolean isLoggedIn) {
-		this.isLoggedIn = isLoggedIn;
-	}
+	
+//	Using isLoggedIn to maintain LoggedInUser.
+//	/**
+//	 * @return the isLoggedIn
+//	 */
+//	public boolean isLoggedIn() {
+//		return isLoggedIn;
+//	}
+//	/**
+//	 * @param isLoggedIn the isLoggedIn to set
+//	 */
+//	public void setLoggedIn(boolean isLoggedIn) {
+//		this.isLoggedIn = isLoggedIn;
+//	}
 	
 	
 }

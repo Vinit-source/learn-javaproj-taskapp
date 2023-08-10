@@ -47,9 +47,7 @@ public class TestLoginFeature {
 			user.setPassword("1234567890");
 			loginService.login(user);
 		} catch (ServiceException e) {
-			assertEquals("Invalid input credentials. Please meet the required input formats.", e.getMessage());
-		} finally {
-			HelperMethods.logoutHelper();
+			assertEquals("Invalid email.", e.getMessage());
 		}
 	}
 
