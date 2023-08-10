@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import com.fssa.learnJava.project.taskapp.model.Task;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
-import com.fssa.learnJava.project.taskapp.helper.HelperMethods;
 
 /**
  * @author Vinit Gore
@@ -44,8 +43,6 @@ public class TestAddTaskFeature {
 		} catch (ServiceException e) {
 //			e.printStackTrace();
 			fail();
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 	}
 
@@ -72,8 +69,6 @@ public class TestAddTaskFeature {
 		} catch (ServiceException e) {
 //			e.printStackTrace();
 			assertEquals(e.getMessage(), "Invalid task input entered.");
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 
 	}
@@ -100,11 +95,8 @@ public class TestAddTaskFeature {
 		} catch (ServiceException e) {
 //			e.printStackTrace();
 			assertEquals(e.getMessage(), "Task data not initialized.");
-		} finally {
-			HelperMethods.logoutHelper();
 		}
 
 	}
 
-	
 }
