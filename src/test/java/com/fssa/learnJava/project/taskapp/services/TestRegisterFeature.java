@@ -26,13 +26,13 @@ public class TestRegisterFeature {
 
 			User user = new User();
 			user.setName("Vinit");
-			user.setEmail("vinit.gore" + Math.random() + "@ctr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setEmail("vinit.gore" + System.nanoTime() + "@example.com");
+			user.setPassword("Passw0rd!" + System.nanoTime());
 
 			assertEquals("Registration Successful", login.registerUser(user));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			assertEquals("Invalid User", e.getMessage());
+			fail("Registration Unsuccessful");
 		}
 	}
 
@@ -44,7 +44,7 @@ public class TestRegisterFeature {
 			User user = new User();
 			user.setName("Vinit");
 			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!");
 
 			assertEquals("Email id vinit.gore@ctr.freshworks.com is already registered", login.registerUser(user));
 		} catch (ServiceException e) {
@@ -61,11 +61,12 @@ public class TestRegisterFeature {
 
 			User user = new User();
 			user.setName("");
-			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setEmail("vinit.gore" + System.nanoTime() + "@example.com");
+			user.setPassword("Passw0rd!" + System.nanoTime());
 			login.registerUser(user);
+			fail("Empty name test failed.");
 		} catch (ServiceException e) {
-			assertEquals("Invalid User", e.getMessage());
+			assertEquals("Invalid name.", e.getMessage());
 		}
 	}
 
@@ -78,10 +79,11 @@ public class TestRegisterFeature {
 			User user = new User();
 			user.setName("Vinit");
 			user.setEmail("");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!" + System.nanoTime());
 			login.registerUser(user);
+			fail("Empty email test failed.");
 		} catch (ServiceException e) {
-			assertEquals("Invalid User", e.getMessage());
+			assertEquals("Invalid email.", e.getMessage());
 		}
 	}
 
@@ -94,10 +96,11 @@ public class TestRegisterFeature {
 			User user = new User();
 			user.setName("Vinit");
 			user.setEmail("vinit.gorectr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!" + System.nanoTime());
 			login.registerUser(user);
+			fail("Invalid email test failed.");
 		} catch (ServiceException e) {
-			assertEquals("Invalid User", e.getMessage());
+			assertEquals("Invalid email.", e.getMessage());
 		}
 	}
 
@@ -109,11 +112,12 @@ public class TestRegisterFeature {
 
 			User user = new User();
 			user.setName("Vinit");
-			user.setEmail("vinit.gore@ctr.freshworks.com");
+			user.setEmail("vinit.gore" + System.nanoTime() + "@example.com");
 			user.setPassword("");
 			login.registerUser(user);
+			fail("Empty password test failed.");
 		} catch (ServiceException e) {
-			assertEquals("Invalid User", e.getMessage());
+			assertEquals("Invalid password.", e.getMessage());
 		}
 	}
 
@@ -125,11 +129,12 @@ public class TestRegisterFeature {
 
 			User user = new User();
 			user.setName("Vinit");
-			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("1234567");
+			user.setEmail("vinit.gore" + System.nanoTime() + "@example.com");
+			user.setPassword("Psw0rd!");
 			login.registerUser(user);
+			fail("Password less than 8 chars test failed.");
 		} catch (ServiceException e) {
-			assertEquals("Invalid User", e.getMessage());
+			assertEquals("Invalid password.", e.getMessage());
 		}
 	}
 

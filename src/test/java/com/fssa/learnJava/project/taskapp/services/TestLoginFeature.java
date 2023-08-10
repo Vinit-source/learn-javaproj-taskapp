@@ -22,7 +22,7 @@ public class TestLoginFeature {
 
 			User user = new User();
 			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!");
 
 			User loggedInUser = loginService.login(user);
 			assertNotNull(loggedInUser);
@@ -41,7 +41,7 @@ public class TestLoginFeature {
 
 			User user = new User();
 			user.setEmail("");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!");
 			loginService.login(user);
 		} catch (ServiceException e) {
 			assertEquals("Invalid email.", e.getMessage());
@@ -59,7 +59,7 @@ public class TestLoginFeature {
 			user.setPassword("");
 			loginService.login(user);
 		} catch (ServiceException e) {
-			assertEquals("Invalid input credentials. Please meet the required input formats.", e.getMessage());
+			assertEquals("Invalid password.", e.getMessage());
 		}
 	}
 
@@ -70,7 +70,7 @@ public class TestLoginFeature {
 
 			User user = new User();
 			user.setEmail("anonymous@example.com");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!");
 
 			User loggedInUser = loginService.login(user);
 			assertNull(loggedInUser);
@@ -89,7 +89,7 @@ public class TestLoginFeature {
 
 			User user = new User();
 			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("0000000000");
+			user.setPassword("Passw0Rd!");
 
 			User loggedInUser = loginService.login(user);
 			assertNull(loggedInUser);

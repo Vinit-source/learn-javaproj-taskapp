@@ -22,7 +22,7 @@ public class UserService {
 	private UserDAO userDAO;
 	private UserValidator userValidator;
 
-	public UserService() throws ServiceException {
+	public UserService() {
 		this.userDAO = new UserDAO();
 		this.userValidator = new UserValidator();
 

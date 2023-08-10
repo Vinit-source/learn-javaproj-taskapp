@@ -21,40 +21,34 @@ public class TestAddTaskFeature {
 	@Test
 	public void testAddTaskSuccess() {
 		try {
-			UserService userService = new UserService();
 			TaskService addTaskService = new TaskService();
 
 			User user = new User();
-
+			user.setId(101);
 			user.setEmail("vinit.gore@ctr.freshworks.com");
-			user.setPassword("1234567890");
+			user.setPassword("Passw0rd!");
 
 			// To be used when tasks are filtered w.r.t. user.
-			User loggedInUser = userService.login(user);
-			if (loggedInUser != null) {
-				Task task = new Task();
-				task.setTask("Install MySQL Workbench");
-				task.setCreatedBy(loggedInUser);
-				boolean status = addTaskService.addTask(task);
-				assertTrue(status);
-			} else {
-				fail("User login failed.");
-			}
+			Task task = new Task();
+			task.setTask("Install MySQL Workbench");
+			task.setCreatedBy(user);
+			boolean status = addTaskService.addTask(task);
+			assertTrue(status);
 		} catch (ServiceException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			fail();
 		}
 	}
 
 	@Test
-	public void testAddEmptyTask() throws Exception {
+	public void testAddEmptyTask() {
 		UserService loginService = new UserService();
 		TaskService addTaskService = new TaskService();
 
 		User user = new User();
-
+		user.setId(101);
 		user.setEmail("vinit.gore@ctr.freshworks.com");
-		user.setPassword("1234567890");
+		user.setPassword("Passw0rd!");
 
 		// To be used when tasks are filtered w.r.t. user.
 		try {
@@ -62,13 +56,14 @@ public class TestAddTaskFeature {
 			if (loggedInUser != null) {
 				Task task = new Task();
 				task.setTask("");
+				task.setCreatedBy(user);
 				addTaskService.addTask(task);
 			} else {
 				fail("User Login failed.");
 			}
 		} catch (ServiceException e) {
-//			e.printStackTrace();
-			assertEquals(e.getMessage(), "Invalid task input entered.");
+			e.printStackTrace();
+			assertEquals("Task is empty", e.getMessage());
 		}
 
 	}
@@ -79,9 +74,9 @@ public class TestAddTaskFeature {
 		TaskService addTaskService = new TaskService();
 
 		User user = new User();
-
+		user.setId(101);
 		user.setEmail("vinit.gore@ctr.freshworks.com");
-		user.setPassword("1234567890");
+		user.setPassword("Passw0rd!");
 
 		// To be used when tasks are filtered w.r.t. user.
 		try {
@@ -93,8 +88,8 @@ public class TestAddTaskFeature {
 				fail("User Login failed.");
 			}
 		} catch (ServiceException e) {
-//			e.printStackTrace();
-			assertEquals(e.getMessage(), "Task data not initialized.");
+			e.printStackTrace();
+			assertEquals("Task is null", e.getMessage());
 		}
 
 	}

@@ -25,7 +25,7 @@ public class TaskService {
 	TaskDAO taskDAO;
 	UserService userService;
 
-	public TaskService() throws ServiceException {
+	public TaskService() {
 		this.taskValidator = new TaskValidator();
 		this.taskDAO = new TaskDAO();
 		this.userService = new UserService();
@@ -34,18 +34,14 @@ public class TaskService {
 	public boolean addTask(Task task) throws ServiceException {
 		try {
 			// Business rule: New task default status should be PENDING
-			User loggedInUser = userService.getLoggedInUser();
-
-			task.setTaskStatus("PENDING");
-			
-			task.setCreatedBy(loggedInUser); // TODO: Add validation to check user null or not
+			if (task != null)
+				task.setTaskStatus("PENDING");
+			// TODO: Add validation to check user null or not
 			taskValidator.validateNewTask(task);
 			taskDAO.createTask(task);
 			return true;
-		} catch (InvalidTaskException e) {
-			throw new ServiceException(e);
-		} catch (DAOException e) {
-			throw new ServiceException(e);
+		} catch (InvalidTaskException | DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
 		}
 	}
 
@@ -59,7 +55,7 @@ public class TaskService {
 						task.isDeleted());
 			}
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 		return tasksFromDB;
 	}
@@ -100,7 +96,7 @@ public class TaskService {
 				throw new ServiceException("Only PENDING tasks can be deleted.");
 			}
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 		System.out.println("The task with id " + taskID + " was deleted successfully!");
 		return methodStatus;
