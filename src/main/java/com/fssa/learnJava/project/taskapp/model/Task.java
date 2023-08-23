@@ -18,6 +18,18 @@ public class Task {
 	private boolean isDeleted;
 	private User createdBy;
 
+	
+	
+	/**
+	 * @param task
+	 * @param taskStatus
+	 */
+	public Task(String task, String taskStatus) {
+		super();
+		this.task = task;
+		this.taskStatus = taskStatus;
+	}
+
 	/**
 	 * @return the task
 	 */
