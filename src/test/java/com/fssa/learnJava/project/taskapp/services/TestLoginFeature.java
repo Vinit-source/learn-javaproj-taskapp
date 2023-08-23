@@ -24,8 +24,7 @@ public class TestLoginFeature {
 			user.setEmail("vinit.gore@ctr.freshworks.com");
 			user.setPassword("Passw0rd!");
 
-			User loggedInUser = loginService.login(user);
-			assertNotNull(loggedInUser);
+			assertTrue(loginService.login(user));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail("Exception while trying to test loginSuccess.");
@@ -72,11 +71,10 @@ public class TestLoginFeature {
 			user.setEmail("anonymous@example.com");
 			user.setPassword("Passw0rd!");
 
-			User loggedInUser = loginService.login(user);
-			assertNull(loggedInUser);
+			assertFalse(loginService.login(user));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			fail("Exception while trying to test LoginEmailNotFound.");
+			assertEquals("User not found.", e.getMessage());
 		}
 
 	}
@@ -91,8 +89,7 @@ public class TestLoginFeature {
 			user.setEmail("vinit.gore@ctr.freshworks.com");
 			user.setPassword("Passw0Rd!");
 
-			User loggedInUser = loginService.login(user);
-			assertNull(loggedInUser);
+			assertFalse(loginService.login(user));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail("Exception while trying to test LoginPasswordDoesNotMatch.");

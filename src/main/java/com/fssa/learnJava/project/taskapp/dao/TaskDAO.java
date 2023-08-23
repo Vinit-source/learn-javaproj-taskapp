@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
+import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
 import com.fssa.learnJava.project.taskapp.utils.LocalDateTimeAttributeConverter;
 
@@ -37,7 +38,7 @@ public class TaskDAO {
 			return (rows > 0);
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException(e.getMessage(), e);
 		}
 
 	}
@@ -70,6 +71,47 @@ public class TaskDAO {
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
+		}
+		return tasks;
+
+	}
+
+	public List<Task> getTasksByUser(User user) throws DAOException {
+		String query = "SELECT id, task, task_status, completed_at, is_deleted FROM tasks WHERE is_deleted = 0 AND user_id = ?";
+
+		List<Task> tasks;
+		ResultSet rs = null;
+
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pst = connection.prepareStatement(query);) {
+			pst.setInt(1, user.getId());
+			rs = pst.executeQuery();
+			tasks = new ArrayList<Task>();
+			while (rs.next()) {
+
+				Task task = new Task();
+
+				int id = rs.getInt("id");
+				String taskName = rs.getString("task");
+				String taskStatus = rs.getString("task_status");
+				LocalDateTime completedAt = LocalDateTimeAttributeConverter
+						.convertToLocalDateTime(rs.getTimestamp("completed_at"));
+
+				task.setId(id);
+				task.setTask(taskName);
+				task.setTaskStatus(taskStatus);
+				task.setCompletedAt(completedAt);
+				tasks.add(task);
+
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				throw new DAOException(e.getMessage(), e);
+			}
 		}
 		return tasks;
 
@@ -109,7 +151,7 @@ public class TaskDAO {
 			return rows > 0;
 		} catch (SQLException e) {
 			throw new DAOException(e);
-		} 
+		}
 	}
 
 }

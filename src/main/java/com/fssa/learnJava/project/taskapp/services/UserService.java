@@ -9,9 +9,9 @@ import com.fssa.learnJava.project.taskapp.dao.UserDAO;
 import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
-import com.fssa.learnJava.project.taskapp.validation.InvalidUserException;
 import com.fssa.learnJava.project.taskapp.validation.UserValidator;
-import com.fssa.learnJava.project.taskapp.validation.ValidatorInitializationException;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidUserException;
+import com.fssa.learnJava.project.taskapp.validation.exception.ValidatorInitializationException;
 
 /**
  * @author BharathwajSoundarara
@@ -28,38 +28,33 @@ public class UserService {
 
 	}
 
-	public User login(User user) throws ServiceException {
+	public boolean login(User user) throws ServiceException {
 		User fromDb;
 		try {
 			userValidator.validateLoggingInUser(user);
 
 			fromDb = userDAO.getUserByEmail(user.getEmail());
-
-			if (user.getPassword().equals(fromDb.getPassword())) {
-				return fromDb;
-			} else {
-				return null;
-			}
+			if (fromDb != null)
+				return user.getPassword().equals(fromDb.getPassword());
+			else
+				return false;
 		} catch (DAOException | InvalidUserException ex) {
 			throw new ServiceException(ex.getMessage(), ex);
 		}
 
 	}
 
-	public String registerUser(User user) throws ServiceException {
+	public boolean registerUser(User user) throws ServiceException {
 		User userFromDb;
 		try {
 			userValidator.validateRegisteringUser(user);
 			userFromDb = userDAO.getUserByEmail(user.getEmail());
 
 			// TODO: Add user_name, email and attributes first before adding business logic
-			if (userFromDb.getEmail() != null && userFromDb.getEmail().equals(user.getEmail())) {
-				return "Email id " + user.getEmail() + " is already registered";
+			if (userFromDb != null && userFromDb.getEmail() != null && userFromDb.getEmail().equals(user.getEmail())) {
+				throw new ServiceException("User already registered!");
 			} else {
-				if (userDAO.createUser(user))
-					return "Registration Successful";
-				else
-					return "Registration Failed";
+				return userDAO.createUser(user);
 			}
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e.getMessage(), e);

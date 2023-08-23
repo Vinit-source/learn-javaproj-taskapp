@@ -1,6 +1,7 @@
 package com.fssa.learnJava.project.taskapp.validation;
 
 import com.fssa.learnJava.project.taskapp.model.User;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidUserException;
 
 public class UserValidator {
 

@@ -52,8 +52,7 @@ public class TestAddTaskFeature {
 
 		// To be used when tasks are filtered w.r.t. user.
 		try {
-			User loggedInUser = loginService.login(user);
-			if (loggedInUser != null) {
+			if (loginService.login(user)) {
 				Task task = new Task();
 				task.setTask("");
 				task.setCreatedBy(user);
@@ -80,8 +79,7 @@ public class TestAddTaskFeature {
 
 		// To be used when tasks are filtered w.r.t. user.
 		try {
-			User loggedInUser = loginService.login(user);
-			if (loggedInUser != null) {
+			if (loginService.login(user)) {
 				Task task = null;
 				addTaskService.addTask(task);
 			} else {

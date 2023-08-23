@@ -12,14 +12,14 @@ public class ConnectionUtil {
 
 		Connection con = null;
 		String url = "jdbc:mysql://164.52.216.41/vinit_core_java_project";
-		String userName = "vinit";
-		String passWord = "vinit$fssa$2023";
-//		try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");	// Checks if the Driver is present in the memory. Driver is responsible for connection to DB. Loads a class to memory without instantiating it
-		con = DriverManager.getConnection(url, userName, passWord);
-//		} catch (ClassNotFoundException e) {
-//			throw new RuntimeException("Database Driver not found.", e);
-//		}
+		String userName = System.getenv("DB_USER");
+		String password = "vinit$fssa$2023";
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");	// Checks if the Driver is present in the memory. Driver is responsible for connection to DB. Loads a class to memory without instantiating it
+		con = DriverManager.getConnection(url, userName, password);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Database Driver not found.", e);
+		}
 		return con;
 		
 	}

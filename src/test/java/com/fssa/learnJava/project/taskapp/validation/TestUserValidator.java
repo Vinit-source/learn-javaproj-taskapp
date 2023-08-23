@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.User;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidUserException;
 
 public class TestUserValidator {
 

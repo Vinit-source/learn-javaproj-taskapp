@@ -6,8 +6,8 @@ package com.fssa.learnJava.project.taskapp.services;
 import com.fssa.learnJava.project.taskapp.model.Task;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
-import com.fssa.learnJava.project.taskapp.validation.InvalidTaskException;
 import com.fssa.learnJava.project.taskapp.validation.TaskValidator;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidTaskException;
 
 import java.time.LocalDateTime;
 import java.util.List;

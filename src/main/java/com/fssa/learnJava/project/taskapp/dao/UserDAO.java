@@ -85,7 +85,7 @@ public class UserDAO {
 					userFromDB.setPassword(rs.getString("password"));
 					userFromDB.setEmail((rs.getString("email_id")));
 
-				}
+				} 
 			}
 
 		} catch (SQLException e) {
@@ -119,26 +119,7 @@ public class UserDAO {
 		}
 	}
 
-	/**
-	 * @return
-	 * @throws DAOException 
-	 */
-	public User findLoggedInUser() throws DAOException {
-		User loggedInUser = new User();
-		final String selectQuery = "SELECT user_id FROM users WHERE is_logged_in = 1";
-
-		try (Connection connection = ConnectionUtil.getConnection();
-				PreparedStatement pst = connection.prepareStatement(selectQuery);
-				ResultSet rs = pst.executeQuery();) {
-			if (rs.next())
-				loggedInUser.setId(rs.getInt("user_id"));
-
-			return loggedInUser;
-
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		}
-	}
+	
 
 //	@Override
 //	public void finalize() {

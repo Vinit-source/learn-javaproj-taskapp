@@ -9,12 +9,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidTaskException;
 
 /**
  * @author Vinit Gore
  *
  **/
-public class TestAddTaskValidator {
+public class TestTaskValidator {
 	TaskValidator taskValidator = new TaskValidator();
 	
 	@Test

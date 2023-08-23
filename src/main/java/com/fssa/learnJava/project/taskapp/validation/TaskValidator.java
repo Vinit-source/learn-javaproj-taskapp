@@ -3,6 +3,7 @@ package com.fssa.learnJava.project.taskapp.validation;
 import java.time.LocalDateTime;
 
 import com.fssa.learnJava.project.taskapp.model.Task;
+import com.fssa.learnJava.project.taskapp.validation.exception.InvalidTaskException;
 
 public class TaskValidator {
 
