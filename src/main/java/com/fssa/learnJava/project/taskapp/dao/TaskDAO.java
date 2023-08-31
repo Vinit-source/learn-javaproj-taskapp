@@ -44,7 +44,7 @@ public class TaskDAO {
 	}
 
 	public List<Task> getAllTasks() throws DAOException {
-		String query = "SELECT id, task, task_status, completed_at, is_deleted FROM tasks WHERE is_deleted = 0";
+		String query = "SELECT id, task, task_status, completed_at, is_deleted FROM tasks WHERE is_deleted = 0 AND task_status=\"PENDING\"";
 
 		List<Task> tasks;
 
@@ -152,6 +152,46 @@ public class TaskDAO {
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Task getTaskByID(int id) throws DAOException {
+		String query = "SELECT id, task, task_status, completed_at, is_deleted FROM tasks WHERE is_deleted = 0 AND id = ?";
+
+		Task task = null;
+		ResultSet rs = null;
+
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pst = connection.prepareStatement(query);) {
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				int taskId = rs.getInt("id");
+				String taskName = rs.getString("task");
+				String taskStatus = rs.getString("task_status");
+				LocalDateTime completedAt = LocalDateTimeAttributeConverter
+						.convertToLocalDateTime(rs.getTimestamp("completed_at"));
+				
+				task = new Task();
+				task.setId(id);
+				task.setTask(taskName);
+				task.setTaskStatus(taskStatus);
+				task.setCompletedAt(completedAt);
+
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				throw new DAOException(e.getMessage(), e);
+			}
+		}
+		return task;
 	}
 
 }

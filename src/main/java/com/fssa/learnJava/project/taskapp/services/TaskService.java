@@ -3,17 +3,18 @@
  */
 package com.fssa.learnJava.project.taskapp.services;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fssa.learnJava.project.taskapp.dao.TaskDAO;
+import com.fssa.learnJava.project.taskapp.dao.UserDAO;
+import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
 import com.fssa.learnJava.project.taskapp.model.Task;
 import com.fssa.learnJava.project.taskapp.model.User;
 import com.fssa.learnJava.project.taskapp.services.exception.ServiceException;
 import com.fssa.learnJava.project.taskapp.validation.TaskValidator;
 import com.fssa.learnJava.project.taskapp.validation.exception.InvalidTaskException;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import com.fssa.learnJava.project.taskapp.dao.TaskDAO;
-import com.fssa.learnJava.project.taskapp.dao.exception.DAOException;
+import com.fssa.learnJava.project.taskapp.validation.exception.NoDataPresentException;
 
 /**
  * @author VinitGore
@@ -36,8 +37,11 @@ public class TaskService {
 			// Business rule: New task default status should be PENDING
 			if (task != null)
 				task.setTaskStatus("PENDING");
-			// TODO: Add validation to check user null or not
+
 			taskValidator.validateNewTask(task);
+			User user = new UserDAO().getUserByEmail(task.getCreatedBy().getEmail());
+			task.setCreatedBy(user);
+
 			taskDAO.createTask(task);
 			return true;
 		} catch (InvalidTaskException | DAOException e) {
@@ -45,8 +49,13 @@ public class TaskService {
 		}
 	}
 
+	/**
+	 * 
+	 * @return List of Tasks
+	 * @throws ServiceException
+	 */
 	public List<Task> getAllTasks() throws ServiceException {
-		List<Task> tasksFromDB;
+		List<Task> tasksFromDB = null;
 		try {
 			tasksFromDB = taskDAO.getAllTasks();
 			System.out.format("%-8s | %-25s | %-15s | %-10s%n", "Sr.No.", "Task Name", "Status", "isDeleted?");
@@ -54,16 +63,31 @@ public class TaskService {
 				System.out.format("%-8d | %-25s | %-15s | %s%n", task.getId(), task.getTask(), task.getTaskStatus(),
 						task.isDeleted());
 			}
-		} catch (DAOException e) {
+			taskValidator.validateTaskList(tasksFromDB);
+		} catch (DAOException | NoDataPresentException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
 		return tasksFromDB;
 	}
 
+	public Task getTaskByID(int id) throws ServiceException {
+		Task taskFromDB = null;
+		try {
+			taskFromDB = taskDAO.getTaskByID(id);
+			System.out.format("%-8s | %-25s | %-15s | %-10s%n", "Sr.No.", "Task Name", "Status", "isDeleted?");
+			System.out.format("%-8d | %-25s | %-15s | %s%n", taskFromDB.getId(), taskFromDB.getTask(),
+					taskFromDB.getTaskStatus(), taskFromDB.isDeleted());
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+		return taskFromDB;
+	}
+
 	public boolean updateTask(Task task) throws ServiceException {
 		boolean methodStatus = false;
 		try {
-			if (taskValidator.isValidTaskStatus(task.getTaskStatus()) && taskValidator.isValidCompletedAt(task)) {
+			if (taskValidator.isValidTaskStatus(task.getTaskStatus())) {
+				task.setCompletedAt(LocalDateTime.now());
 				methodStatus = taskDAO.editTask(task);
 			}
 		} catch (DAOException | InvalidTaskException e) {

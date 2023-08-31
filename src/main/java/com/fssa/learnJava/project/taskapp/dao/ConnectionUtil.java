@@ -11,9 +11,16 @@ public class ConnectionUtil {
 	public static Connection getConnection() throws SQLException {
 
 		Connection con = null;
+		
+		// Cloud DB
 		String url = "jdbc:mysql://164.52.216.41/vinit_core_java_project";
-		String userName = System.getenv("DB_USER");
+		String userName = "vinit";
 		String password = "vinit$fssa$2023";
+		
+		// Localhost
+//		url = "jdbc:mysql://localhost:3306/vinit_core_java_project";
+//		userName = "root";
+//		password = "123456";
 		try {
             Class.forName("com.mysql.cj.jdbc.Driver");	// Checks if the Driver is present in the memory. Driver is responsible for connection to DB. Loads a class to memory without instantiating it
 		con = DriverManager.getConnection(url, userName, password);

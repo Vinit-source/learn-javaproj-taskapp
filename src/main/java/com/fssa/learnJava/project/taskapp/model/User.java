@@ -28,6 +28,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param loggedInEmail
+	 */
+	public User(String loggedInEmail) {
+		this.email = loggedInEmail;
+	}
+
 	public int getId() {
 		return id;
 	}

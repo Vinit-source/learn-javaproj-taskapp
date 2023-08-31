@@ -18,8 +18,6 @@ public class Task {
 	private boolean isDeleted;
 	private User createdBy;
 
-	
-	
 	/**
 	 * @param task
 	 * @param taskStatus
@@ -28,6 +26,36 @@ public class Task {
 		super();
 		this.task = task;
 		this.taskStatus = taskStatus;
+	}
+
+	/**
+	 * @param id
+	 * @param task
+	 * @param taskStatus
+	 */
+	public Task(int id, String task, String taskStatus) {
+		super();
+		this.id = id;
+		this.task = task;
+		this.taskStatus = taskStatus;
+	}
+
+	/**
+	 * 
+	 */
+	public Task() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param taskName
+	 * @param taskStatus2
+	 * @param createdBy2
+	 */
+	public Task(String taskName, String taskStatus, User createdBy) {
+		this.task = taskName;
+		this.taskStatus = taskStatus;
+		this.createdBy = createdBy;
 	}
 
 	/**
